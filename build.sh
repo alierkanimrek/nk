@@ -12,6 +12,9 @@ frontend=$path/src/frontend
 nginx=$path/dist/nginx_root
 tornado=$path/dist/tornado_root
 
+mkdir -p nginx
+mkdir -p tornado
+
 #Clear
 /bin/rm -rf $nginx/* > /dev/null 2>&1
 /bin/rm -rf $tornado/heap > /dev/null 2>&1
