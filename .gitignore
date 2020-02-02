@@ -1,0 +1,6 @@
+*sublime*
+src/server/heap/fontawesome
+dist/nginx_root/*
+dist/tornado_root/*
+dist/mongo
+dist/nginx/ca

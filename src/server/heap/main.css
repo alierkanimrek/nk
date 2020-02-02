@@ -1,0 +1,40 @@
+html,body { 
+  font-family: 'Open Sans', serif;
+}
+section{
+  margin:2rem;
+}
+.avatar{
+  margin: 2rem;
+}
+.avatar img {
+  padding: .5rem;
+  background: #fff;
+  border-radius: 50%;
+  -webkit-box-shadow: 0 2px 3px rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.1);
+  box-shadow: 0 2px 3px rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.1);
+}
+.footer{
+  background-color: #888;
+  color: #fff; 
+  margin:0; 
+  padding:2rem;
+}
+.footer a {
+  color: #fff;
+}
+
+.social_img{
+  width: 48px;
+  border-radius: 50%;
+  background: #fff;
+  border: solid;  
+}
+
+.card{
+  padding: .1rem;
+}
+
+.content{
+  text-align: justify;
+}

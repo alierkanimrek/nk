@@ -1,0 +1,35 @@
+<!--
+_______________________________________________________________________________________________
+
+
+
+
+                    GREETING
+
+
+
+_______________________________________________________________________________________________
+-->
+<section class="hero is-fullheight-with-navbar">
+    <div class="container">
+        <div class="columns is-vcentered">
+            <div class="column ">
+                <figure class="avatar"> <img src="/heap/greeting/{{ escape(greeting.data["picture"]) }}"></figure>
+            </div>
+            <div class="column">
+                <div class="hero-body">
+                    <div class="container">
+                    <h1 class="title">
+                    {{ escape(greeting.data["name"]) }}
+                    </h1>
+                    <p class="subtitle">
+                    {% for sub in greeting.data["sub"] %}
+                        {{ escape(sub) }}<br/>
+                    {% end %}
+                    </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

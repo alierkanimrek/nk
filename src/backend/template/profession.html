@@ -1,0 +1,40 @@
+<!--
+_______________________________________________________________________________________________
+
+
+
+
+                    PROFESSION
+
+
+
+_______________________________________________________________________________________________
+-->
+
+<section class="">
+    <div class="container">
+            <div class="row columns">
+                {% for name in prof.data %}
+                <div class="column is-one-third">
+                    <div class="card large">
+                        <div class="card-image">
+                            <figure class="image avatar">
+                                <img src="/heap/prof/{{ escape(prof.data[name]["img"]) }}" alt="Image">
+                            </figure>
+                        </div>
+                        <div class="card-content">
+                            <div class="media">
+                                <div class="media-content ">
+                                    <p class="title is-4 no-padding">{{ escape(prof.data[name]["name"]) }}</p>
+                                    <p class="subtitle is-6"></p>
+                                </div>
+                            </div>
+                            <div class="content">{% raw prof.data[name]["summary"] %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% end %}
+            </div>
+    </div>
+</section>

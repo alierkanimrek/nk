@@ -1,0 +1,15 @@
+[Unit]
+Description=NK Server Application
+After=multi-user.target
+
+[Service]
+User=admin
+Type=simple
+WorkingDirectory=/var/nk/app
+ExecStart=/usr/bin/python3 /var/nk/app/server.py
+#StandardInput=tty-force
+Restart=always
+RestartSec=15
+
+[Install]
+WantedBy=multi-user.target

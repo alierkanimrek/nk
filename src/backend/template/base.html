@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{{ escape(glob.title(template)) }}</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="F">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+
+    <link rel="stylesheet" href="heap/bulma.min.css">
+    <link rel="stylesheet" href="heap/fontawesome/css/all.css">
+    <link rel="stylesheet" href="heap/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <style>
+        body {
+          background-image: url("/heap/glob/{{ escape(glob.data["background"]) }}");
+          background-repeat: no-repeat;
+          background-position: left top;
+          background-size: 100%;
+          background-attachment: fixed;
+        }
+    </style>
+</head>
+<body class="has-navbar-fixed-top">
+    
+<!--
+_______________________________________________________________________________________________
+
+
+
+
+                    NAV BAR
+
+
+
+_______________________________________________________________________________________________
+-->
+<nav class="navbar is-fixed-top is-dark" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="https://nuraykaya.com">
+      <span>{{ escape(glob.title(template)) }}</span>
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+    </div>
+
+    <div class="navbar-end">
+    </div>
+  </div>
+</nav>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  // Get all "navbar-burger" elements
+  const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+  // Check if there are any navbar burgers
+  if ($navbarBurgers.length > 0) {
+
+    // Add a click event on each of them
+    $navbarBurgers.forEach( el => {
+      el.addEventListener('click', () => {
+
+        // Get the target from the "data-target" attribute
+        const target = el.dataset.target;
+        const $target = document.getElementById(target);
+
+        // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+        el.classList.toggle('is-active');
+        $target.classList.toggle('is-active');
+
+      });
+    });
+  }
+
+});    
+</script>
+
+
+
+{% block content %}
+{% end %}
+
+
+
+
+<!--
+_______________________________________________________________________________________________
+
+
+
+
+                    CONTACT
+
+
+
+_______________________________________________________________________________________________
+-->
+<section class="footer">
+    <div class="container">
+        <div class="columns is-vcentered">
+            <div class="column ">
+                <p class="is-size-3">{{ escape(glob.data["contact"]["adressTitle"]) }}</p>
+                <p class="is-size-4">{{ escape(glob.data["contact"]["adress"]) }}</p>
+                <br/>
+                <iframe src="{{ escape(glob.data["contact"]["mapframe"]) }}" width="90%" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+            </div>
+
+            <div class="column">
+                <div class="columns is-multiline">                     
+                    
+                    <div class="column has-text-centered">
+                        <a target="_blank" href="mailto:{{ escape(glob.data["contact"]["mail"]) }}">
+                            <img class="social_img" src="heap/icons/gm.svg"></img>
+                            <p>{{ escape(glob.data["contact"]["mailLabel"]) }}</p>
+                            </a>
+                    </div>
+                    
+                    <div class="column has-text-centered">
+                        <a target="_blank" href="{{ escape(glob.data["contact"]["instagram"]) }}">
+                            <img class="social_img" src="heap/icons/ins.svg"></img>
+                            <p>{{ escape(glob.data["contact"]["instagramLabel"]) }}</p>
+                            
+                        </a>
+                    </div>
+
+                    <div class="column has-text-centered">
+                        <a target="_blank" href="{{ escape(glob.data["contact"]["facebook"]) }}">
+                            <img class="social_img" src="heap/icons/fb.svg"></img>
+                            <p>{{ escape(glob.data["contact"]["facebookLabel"]) }}</p>
+                        </a>
+                    </div>
+
+                    <div class="column has-text-centered">
+                        <a target="_blank" href="{{ escape(glob.data["contact"]["youtube"]) }}">
+                            <img class="social_img" src="heap/icons/yb.svg"></img>
+                            <p>{{ escape(glob.data["contact"]["youtubeLabel"]) }}</p>
+                        </a>
+                    </div>
+
+                    <div class="column has-text-centered">
+                        <a target="_blank" href="{{ escape(glob.data["contact"]["blog"]) }}">
+                            <img class="social_img" src="heap/icons/bg.svg"></img>
+                            <p>{{ escape(glob.data["contact"]["blogLabel"]) }}</p>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div style="text-align: center;">
+          <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons Lisansı" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a><br />{% raw glob.data["licence-text"] %}
+        </div>
+    </div>
+
+</section>
+
+
+
+
+</body>
+</html>

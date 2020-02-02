@@ -1,0 +1,22 @@
+{
+    "tr-tr": {
+        "titles" : {"main":"Nuray KAYA"},
+        "contact" : {
+            "adressTitle" : "Nuray Kaya Farkındalık Merkezi",
+            "adress" : "Şirinyalı Mh.1534 Sk.Begonvil Sit.B Blok D.1 Muratpaşa/ANTALYA",
+            "mapframe" : "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1596.1500261634808!2d30.740614658071706!3d36.85923614105203!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14c39ae99c6c034b%3A0x9d1e4007f8c668f2!2zxZ5pcmlueWFsxLEsIDE1MzQuIFNrLiBObzoxNywgMDcxNjAgTXVyYXRwYcWfYS9BbnRhbHlh!5e0!3m2!1str!2str!4v1579527044707!5m2!1str!2str",
+            "mail" : "nuraykaya1@gmail.com",
+            "mailLabel" : "nuraykaya1@gmail.com",
+            "instagram" : "https://instagram.com/pranik_arhat",
+            "instagramLabel" : "pranik_arhat",
+            "facebook" : "https://facebook.com/turuncu64",
+            "facebookLabel" : "turuncu64",
+            "youtube" : "https://www.youtube.com/channel/UCqeqZ7VC4TXdDSaHB9gh2ow",
+            "youtubeLabel" : "Nuray Kaya",
+            "blog" : "https://antalyapraniksifa.blogger.com",
+            "blogLabel" : "https://antalyapraniksifa.blogger.com"
+        },
+        "background" : "background",
+        "licence-text" : "Bu eser <a rel='license' href='http://creativecommons.org/licenses/by-nc/4.0/'> Creative Commons Atıf-GayriTicari 4.0 Uluslararası Lisansı</a> ile lisanslanmıştır." 
+    }
+}
