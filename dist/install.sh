@@ -36,6 +36,8 @@ mkdir -p $nginx
 /bin/rm -rf $nginx/*
 /bin/cp -Rv nginx_root/* $nginx
 
+chown -R admin:admin $app
+#chown -R nginx:nginx $nginx
 chmod -R 775 $nginx
 chmod -R 775 $app 
 
