@@ -4,7 +4,11 @@ path=$(dirname $(readlink -f $0))
 cd $path
 source $path/vars.sh
 
-if [ "$1" == "" ];then
+if [ "$1" == "install" ];then
+    /bin/cp -v appservice.service /lib/systemd/system/appservice.service
+    systemctl daemon-reloadelse
+    path=/var/${name}
+elif [ "$1" == "" ];then
     path=/var/${name}
 else
     path=$1/${name}
@@ -13,11 +17,6 @@ fi
 app=$path/app
 nginx=$path/nginx
 backup=$path/backup
-
-if [ "$2" == "install" ];then
-    /bin/cp -v appservice.service /lib/systemd/system/appservice.service
-    systemctl daemon-reloadelse
-fi
 
 systemctl stop nginx.service
 systemctl stop appservice.service
