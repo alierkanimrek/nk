@@ -5,6 +5,13 @@ section{
   margin:2rem;
   z-index: 1;
 }
+
+p{
+    line-height: 1.25em;
+    padding: 0 0 1em 0;
+    text-align: justify;
+}
+
 .avatar{
   margin: 2rem;
 }
@@ -38,6 +45,7 @@ section{
 
 .content{
   text-align: justify;
+  font-size: 0.9rem;
 }
 
 .cardlink{
