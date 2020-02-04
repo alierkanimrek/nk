@@ -29,8 +29,65 @@ class MainHandler(BaseHandler):
 
 
 
+class DanismanlikHandler(BaseHandler):
+
+    
+    async def get(self):
+        id = "prof1"
+        temp = "danismanlik"
+        prof = Prof(self.lang, self.conf.SERVER.heap_path)
+        await self.render_page(
+            template=temp,
+            id=id,
+            prof=prof,
+            )
+
+
+
+
+
+
+
+class SeminerHandler(BaseHandler):
+
+    
+    async def get(self):
+        id = "prof2"
+        temp = "seminer"
+        prof = Prof(self.lang, self.conf.SERVER.heap_path)
+        await self.render_page(
+            template=temp,
+            id=id,
+            prof=prof,
+            )
+
+
+
+
+
+
+class KisiselGHandler(BaseHandler):
+
+    
+    async def get(self):
+        id = "prof3"
+        temp = "kisiselgelisim"
+        prof = Prof(self.lang, self.conf.SERVER.heap_path)
+        await self.render_page(
+            template=temp,
+            id=id,
+            prof=prof,
+            )
+
+
+
+
+
 
 mainRouting = [
     (r"/", MainHandler),
+    (r"/danismanlik", DanismanlikHandler),
+    (r"/seminer", SeminerHandler),
+    (r"/kisiselgelisim", KisiselGHandler)
     ]
   

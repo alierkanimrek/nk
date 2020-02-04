@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>{{ escape(glob.title(template)) }}</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width,height=device-height initial-scale=1">
     <meta name="description" content="F">
     <meta name="keywords" content="">
     <meta name="author" content="">
@@ -14,17 +14,25 @@
     <link rel="stylesheet" href="heap/main.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
     <style>
-        body {
+        .bgimage {
           background-image: url("/heap/glob/{{ escape(glob.data["background"]) }}");
           background-repeat: no-repeat;
           background-position: left top;
-          background-size: 100%;
+          background-size: cover;
           background-attachment: fixed;
+          filter: blur(8px);
+          -webkit-filter: blur(8px);
+          filter: opacity(70%);
+          -webkit-filter: opacity(70%);
+          position: fixed;
+          width: 100vw;
+          height: 100vh;
+          z-index:0;        
         }
     </style>
 </head>
 <body class="has-navbar-fixed-top">
-    
+<div class="bgimage"></div>    
 <!--
 _______________________________________________________________________________________________
 
@@ -52,6 +60,13 @@ ________________________________________________________________________________
 
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
+      {% for item in glob.data["menu"] %}
+        {% if item["label"] not in glob.title(template) %}
+          <a class="navbar-item" href="{{ item["page"] }}">
+            {{ item["label"] }}
+          </a>
+          {% end %}
+      {% end %}
     </div>
 
     <div class="navbar-end">
@@ -106,6 +121,7 @@ ________________________________________________________________________________
 
 _______________________________________________________________________________________________
 -->
+<a id="contact"></a>
 <section class="footer">
     <div class="container">
         <div class="columns is-vcentered">

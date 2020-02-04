@@ -15,11 +15,13 @@ ________________________________________________________________________________
     <div class="container">
             <div class="row columns">
                 {% for name in prof.data %}
+                {% if prof.data[name]["name"] not in glob.title(template) %}
                 <div class="column is-one-third">
                     <div class="card large">
+                        <a class="cardlink" href="{{ escape(prof.data[name]["fullid"]) }}">
                         <div class="card-image">
                             <figure class="image avatar">
-                                <img src="/heap/prof/{{ escape(prof.data[name]["img"]) }}" alt="Image">
+                                <img src="/heap/prof/{{ escape(prof.data[name]["img"]) }}" >
                             </figure>
                         </div>
                         <div class="card-content">
@@ -29,11 +31,13 @@ ________________________________________________________________________________
                                     <p class="subtitle is-6"></p>
                                 </div>
                             </div>
-                            <div class="content">{% raw prof.data[name]["summary"] %}
+                            <div class="content">{% raw prof.data[name]["summary"] %} >>>
                             </div>
                         </div>
+                        </a>
                     </div>
                 </div>
+                {% end %}
                 {% end %}
             </div>
     </div>

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<!-- START CONTENT -->
+<section>
+    <div class="container">
+        <div class="columns is-vcentered">
+            <div class="column ">
+                <figure class="avatar"> <img src="/heap/prof/{{ escape(prof.data[id]["img"]) }}"></figure>
+            </div>
+            <div class="column">
+                <div class="hero-body">
+                    <div class="container has-text-centered">
+                    <h1 class="title">{{ escape(prof.data[id]["name"]) }}</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="reading">
+            <p>{% raw prof.data[id]["summary"] %}</p>
+            <p>{% raw prof.data[id]["full"] %}</p>
+        </div>
+    </div>
+</section>
+<!-- END CONTENT -->
+
+
+{% include profession.html %}
+
+
+{% end %}

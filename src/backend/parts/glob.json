@@ -1,6 +1,18 @@
 {
     "tr-tr": {
-        "titles" : {"main":"Nuray KAYA"},
+        "titles" : {
+            "main":"Nuray KAYA",
+            "danismanlik":"Nuray Kaya - Danışmanlık",
+            "seminer":"Nuray Kaya - Seminer",
+            "kisiselgelisim":"Nuray Kaya - Kişisel Gelişim"
+        },
+        "menu" : [
+            {"label": "Danışmanlık", "page": "danismanlik"},
+            {"label": "Seminer", "page": "seminer"},
+            {"label": "Kişisel Gelişim", "page": "kisiselgelisim"},
+            {"label": "İletişim", "page": "#contact"}
+        ],
+
         "contact" : {
             "adressTitle" : "Nuray Kaya Farkındalık Merkezi",
             "adress" : "Şirinyalı Mh.1534 Sk.Begonvil Sit.B Blok D.1 Muratpaşa/ANTALYA",
@@ -17,6 +29,6 @@
             "blogLabel" : "https://antalyapraniksifa.blogger.com"
         },
         "background" : "background",
-        "licence-text" : "Bu eser <a rel='license' href='http://creativecommons.org/licenses/by-nc/4.0/'> Creative Commons Atıf-GayriTicari 4.0 Uluslararası Lisansı</a> ile lisanslanmıştır." 
+        "licence-text" : "Bu sayfadaki içerik <a rel='license' href='http://creativecommons.org/licenses/by-nc/4.0/'> Creative Commons Atıf-GayriTicari 4.0 Uluslararası Lisansı</a> ile lisanslanmıştır." 
     }
 }
