@@ -12,7 +12,11 @@
             {"label": "Kişisel Gelişim", "page": "kisiselgelisim"},
             {"label": "İletişim", "page": "#contact"}
         ],
-
+        "meta": {
+            "author" : "Nuray KAYA",
+            "description" : "Nuray Kaya'nın kişisel sitesi",
+            "keywords" : "Pranik Şifa, Antalya, Sosyolog, Aile Danışmanı, Bioenerji, Reiki, NLP, Access Bars, Seminer, Arhatik Yoga, Meditasyon, Yoga, Tai Chi, Kişisel Gelişim, Ruh sağlığı"
+        },
         "contact" : {
             "adressTitle" : "Nuray Kaya Farkındalık Merkezi",
             "adress" : "Şirinyalı Mh.1534 Sk.Begonvil Sit.B Blok D.1 Muratpaşa/ANTALYA",

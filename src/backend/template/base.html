@@ -5,12 +5,11 @@
     <meta charset="utf-8">
     <title>{{ escape(glob.title(template)) }}</title>
     <meta name="viewport" content="width=device-width,height=device-height initial-scale=1">
-    <meta name="description" content="F">
-    <meta name="keywords" content="">
-    <meta name="author" content="">
-
+    {% for key in glob.data["meta"].keys() %}
+      <meta name="{{ key }}" content="{{ glob.data["meta"][key] }}">
+    {% end %}
     <link rel="stylesheet" href="heap/bulma.min.css">
-    <link rel="stylesheet" href="heap/fontawesome/css/all.css">
+    <!-- <link rel="stylesheet" href="heap/fontawesome/css/all.css"> -->
     <link rel="stylesheet" href="heap/main.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
     <style>
@@ -20,10 +19,8 @@
           background-position: left top;
           background-size: cover;
           background-attachment: fixed;
-          filter: blur(8px);
-          -webkit-filter: blur(8px);
-          filter: opacity(70%);
-          -webkit-filter: opacity(70%);
+          filter: opacity(30%);
+          -webkit-filter: opacity(30%);
           position: fixed;
           width: 100vw;
           height: 100vh;
