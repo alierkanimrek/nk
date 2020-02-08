@@ -33,6 +33,7 @@
             "blogLabel" : "https://antalyapraniksifa.blogger.com"
         },
         "background" : "background",
-        "licence-text" : "Bu sayfadaki içerik <a rel='license' href='http://creativecommons.org/licenses/by-nc/4.0/'> Creative Commons Atıf-GayriTicari 4.0 Uluslararası Lisansı</a> ile lisanslanmıştır." 
+        "licence-text" : "Bu sayfadaki içerik <a rel='license' href='http://creativecommons.org/licenses/by-nc/4.0/'> Creative Commons Atıf-GayriTicari 4.0 Uluslararası Lisansı</a> ile lisanslanmıştır.", 
+        "statistics" : {"t_label": "Toplam ziyaretçi", "d":0, "m": 0, "t": 0}
     }
 }

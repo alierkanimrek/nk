@@ -17,6 +17,8 @@ from tornado import gen, ioloop, web
 
 from lib import KBConfig
 from lib import KBLogger
+from lib import STM
+from lib import Statistics
 
 from main import mainRouting
 
@@ -84,12 +86,15 @@ routing = mainRouting
 
 application = web.Application(
     routing,
+    xheaders = True,
     debug = True,
     conf = conf,
     log = log,
+    sts = Statistics("nk"),
     cookie_secret = conf.SERVER.cookie_key,
     xsrf_cookies = True, 
-    template_path = conf.SERVER.template_path
+    template_path = conf.SERVER.template_path,
+    visitors = STM(120)
     )
 
 
@@ -99,7 +104,7 @@ if __name__ == "__main__":
     application.listen(8000)
     stage1.i("Server listening...")
     mainloop = ioloop.IOLoop.instance()
-    #mainloop.reloader = ioloop.PeriodicCallback(reload, 60000)
-    #mainloop.add_callback(reload)
+    mainloop.reloader = ioloop.PeriodicCallback(reload, 60000)
+    mainloop.add_callback(reload)
     mainloop.start()
     

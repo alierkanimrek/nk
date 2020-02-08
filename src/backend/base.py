@@ -12,8 +12,10 @@
 
 import json
 import time
+import datetime
 import tornado
 from parts import Glob
+from lib import Statistics
 
 
 
@@ -33,7 +35,14 @@ class BaseHandler(tornado.web.RequestHandler):
         self.__log = self.log.job("UBase")
         self.lang = "tr-tr"
         self.glob = Glob(self.lang, self.conf.SERVER.heap_path)
-
+        
+        sts = self.settings['sts']
+        id = sts.getVisitorId(self.request)
+        if(not self.settings['visitors'].isThere(id)):
+            sts.newVisitor()
+        self.settings['visitors'].add(id)
+        
+        self.glob.data["statistics"]["t"] = sts.getHits()
 
 
 
