@@ -33,8 +33,11 @@ class Parts():
 
     def __load(self):
         fh = open(self._fn, "r")
-        self._data = json.loads(fh.read())
-        self.data = self._data[self.lang]
+        try:
+            self._data = json.loads(fh.read())
+            self.data = self._data[self.lang]
+        except:
+            pass
 
 
 
@@ -45,3 +48,18 @@ class Parts():
             return(os.path.basename(files[random.randrange(len(files))]))
         else:
             return(False)
+
+
+
+
+    def save(self, content):
+        swap = self._data
+        swap[self.lang] = content
+        try:
+            jsn = json.dumps(swap, indent=4, separators=(',', ': '))
+            fh = open(self._fn, "w+")
+            fh.write(jsn)
+            fh.close()
+        except:
+            pass
+        self.__load()

@@ -10,7 +10,41 @@ ________________________________________________________________________________
 
 _______________________________________________________________________________________________
 -->
-<section>
-    
+<section class="">
+    <div class="container">
+            <div class="row columns">
+                {% if len(soc.front) > 0 %}
+                {% for front in soc.front %}
+                <div class="column is-one-third">
+                    <div class="card large">
+                        <a class="cardlink" href="{{ escape(front['url']) }}" target="_blank">
+                        <div class="card-image">
+                            <figure class="image">
+                                <img src="/heap/social/{{ escape(front['img']) }}" >
+                            </figure>
+                        </div>
+                        {% if len(front['desc']) > 0 %}
+                        <div class="card-content">
+                            <!--<div class="media">
+                                <div class="media-content ">
+                                    <p class="title is-4 no-padding"></p>
+                                    <p class="subtitle is-6"></p>
+                                </div>
+                            </div>-->
+                            {% if len(front['desc']) > 256 %}
+                            <div class="content">{% raw front['desc'][:256] %} >>></div>
+                            {% else %}
+                            <div class="content">{% raw front['desc'] %}</div>
+                            {% end %}
+                        </div>
+                        {% end %}
+                        </a>
+                    </div>
+                </div>
+                {% end %}
+                {% end %}
 
+            </div>
+    </div>
 </section>
+

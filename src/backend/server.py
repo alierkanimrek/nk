@@ -12,6 +12,7 @@
 
 import sys, os
 sys.path.append(os.getcwd())
+from datetime import datetime
 
 from tornado import gen, ioloop, web
 
@@ -19,7 +20,7 @@ from lib import KBConfig
 from lib import KBLogger
 from lib import STM
 from lib import Statistics
-
+from webbot import social_updater
 from main import mainRouting
 
 
@@ -75,7 +76,30 @@ async def reload():
             stage1.d("Conf updated")
         except Exception as inst:
             stage1.e_tb("Conf updating failed", inst)
+
+
+
+
+
+
+async def socUpdate():
+    minute = datetime.strftime(datetime.utcnow(), "%M")
+    hour = int(datetime.strftime(datetime.utcnow(), "%H"))+3
     
+    if not ioloop.IOLoop.current().socLoader.is_running():
+        ioloop.IOLoop.current().socLoader.start()
+    else:
+        try:
+            if hour > 8:
+                if minute in ["05", "25", "45", "55"]:
+                    social_updater(conf.SERVER.heap_path+"/social", ["ins"])
+                    stage1.d("Social updated", "ins")
+                if minute == "00" and hour in list(range(8,24)):
+                    social_updater(conf.SERVER.heap_path+"/social", ["fbk", "ytb"])
+                    stage1.d("Social updated", "fbk, ytb")
+        except Exception as inst:
+            stage1.e_tb("Social updating failed", inst)
+
 
 
 
@@ -105,6 +129,8 @@ if __name__ == "__main__":
     stage1.i("Server listening...")
     mainloop = ioloop.IOLoop.instance()
     mainloop.reloader = ioloop.PeriodicCallback(reload, 60000)
+    mainloop.socLoader = ioloop.PeriodicCallback(socUpdate, 60000)
     mainloop.add_callback(reload)
+    mainloop.add_callback(socUpdate)
     mainloop.start()
     

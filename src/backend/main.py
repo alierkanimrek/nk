@@ -6,7 +6,7 @@
 
 
 from base import BaseHandler
-from parts import Greeting, Prof
+from parts import Greeting, Prof, Social
 
 
 
@@ -17,10 +17,12 @@ class MainHandler(BaseHandler):
         temp = "main"
         greeting = Greeting(self.lang, self.conf.SERVER.heap_path)
         prof = Prof(self.lang, self.conf.SERVER.heap_path)
+        soc = Social(self.lang)
         await self.render_page(
             template=temp,
             greeting=greeting,
-            prof=prof
+            prof=prof,
+            soc=soc
             )
 
 
