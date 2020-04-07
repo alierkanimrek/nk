@@ -7,6 +7,8 @@ import os
 import glob
 from lib import RssApp
 from parts import Social
+from lib import LOG
+
 
 
 FacebookPosts_RSSAPP_URL = "https://rss.app/embed/v1/rmBj2GN3rS39NvvT"
@@ -26,6 +28,7 @@ class Agent(object):
     def __init__(self, heap):
         self._heap = heap
         self._items = []
+        self._log = LOG._.job("Social Agent")
 
 
 
@@ -124,14 +127,14 @@ def social_updater(heap, mode=["ins", "fbk", "ytb"]):
 
 
 
-#heap = "/home/ali/nk/src/server/heap/social"
+heap = "/home/ali/nk/src/server/heap/social"
 #i = InstagramAgent("tr-tr")
 #f = FacebookAgent("tr-tr")
 #y = YoutubeAgent("tr-tr")
 #i.up(heap)
 #f.up(heap)
 #y.up(heap)
-#social_updater(heap, ["ins"])
+social_updater(heap, ["ins"])
 
 #social = Social("tr-tr")
 #print(social.imgs)

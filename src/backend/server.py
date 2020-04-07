@@ -16,8 +16,8 @@ from datetime import datetime
 
 from tornado import gen, ioloop, web
 
-from lib import KBConfig
-from lib import KBLogger
+from lib import KBConfig, CONF
+from lib import KBLogger, LOG
 from lib import STM
 from lib import Statistics
 from webbot import social_updater
@@ -49,7 +49,8 @@ try:
     stage1.i("Configuration loaded", 
         "log_level:"+conf.LOG.log_level, 
         "maintenance:"+conf.SERVER.maintenance)
-
+    LOG._ = log
+    CONF._ = conf
 except Exception as inst:
     print("Initializing failed")
     print(type(inst))

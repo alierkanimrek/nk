@@ -8,6 +8,12 @@ import os
 import json
 import glob
 import random
+from lib import LOG
+
+
+
+
+
 
 
 
@@ -26,6 +32,7 @@ class Parts():
             self._fn = os.path.join(path, fn+".json")
         else:
             self._fn = os.path.join(path, fn+".json")
+        self._log = LOG._.job("Parts Base")
         self.__load()
 
 
@@ -36,8 +43,8 @@ class Parts():
         try:
             self._data = json.loads(fh.read())
             self.data = self._data[self.lang]
-        except:
-            pass
+        except Exception as inst:
+            self._log.e_tb("Loading error", inst)
 
 
 
@@ -60,6 +67,6 @@ class Parts():
             fh = open(self._fn, "w+")
             fh.write(jsn)
             fh.close()
-        except:
-            pass
+        except Exception as inst:
+            self._log.e_tb("Save error", inst)
         self.__load()

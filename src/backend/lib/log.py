@@ -12,8 +12,9 @@ import traceback
 import logging
 from logging.handlers import TimedRotatingFileHandler
 from logging import handlers
+from .letglob import LetGlobal
 
-
+    
 
 
 
@@ -187,7 +188,7 @@ class KBLoggerJob:
             self._logger.log.notset(msg)
 
 
-
+LOG=LetGlobal(KBLogger("/dev/null"))
 
 
 

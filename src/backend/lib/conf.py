@@ -12,6 +12,13 @@
 
 import os
 import importlib
+from .letglob import LetGlobal
+
+
+
+
+
+
 
 
 
@@ -134,6 +141,7 @@ class KBConfig:
 		
 		
 		
+CONF=LetGlobal()
 		
 		
 		
