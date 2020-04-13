@@ -5,15 +5,20 @@
 
 import os
 import glob
-from lib import RssApp
+from lib import InstagramPage, FacebookPage
 from parts import Social
 from lib import LOG
 
 
 
-FacebookPosts_RSSAPP_URL = "https://rss.app/embed/v1/rmBj2GN3rS39NvvT"
-Instagram_RSSAPP_URL = "https://rss.app/embed/v1/z3xerUfwq1l02wtu"
-Youtube_RSSAPP_URL = "https://rss.app/embed/v1/Z5V5TP8jI03qGfve"
+
+#FacebookPosts_RSSAPP_URL = "https://rss.app/embed/v1/rmBj2GN3rS39NvvT"
+#Instagram_RSSAPP_URL = "https://rss.app/embed/v1/z3xerUfwq1l02wtu"
+#Youtube_RSSAPP_URL = "https://rss.app/embed/v1/Z5V5TP8jI03qGfve"
+InstagramPageURL = "https://instagram.com/pranik_arhat"
+FacebookPageURL = "https://facebook.com/antalyapraniksifa/posts"
+
+
 
 
 
@@ -33,19 +38,16 @@ class Agent(object):
 
 
 
-    def update(self, url, count=0):
+    def update(self, parser, count=0):
         self._items = []
         c=1
-        #fb = RssApp(file="/home/ali/nk/src/backend/rss.app#embed#v1#rmBj2GN3rS39NvvT")
-        rss = RssApp(url=url)
-        rss.parse()
-        for item in rss.items:
+        for item in parser.items:
             if(c > count and count>0):
                 break
-            imgFn = self._get_img_name(item["url"])+".jpg"
+            imgFn = self._get_img_name(item["url"])[:200]+".jpg"
             imgFullFn = self._heap+"/"+imgFn
             if not os.path.isfile(imgFullFn):
-                rss.save_image(item["img"], imgFullFn)
+                parser.save_image(item["img"], imgFullFn)
             item["img"] = imgFn
             item["desc"] = self._clear_hashtags(item["desc"])
             self._items.append(item)
@@ -104,10 +106,14 @@ def social_updater(heap, mode=["ins", "fbk", "ytb"]):
     
     #Get posts
     if "ins" in mode:
-        agent.update(Instagram_RSSAPP_URL,  1)
+        parser = InstagramPage(InstagramPageURL)
+        parser.parse()
+        agent.update(parser,  1)
         items["ins"] = agent.items
     if "fbk" in mode:
-        agent.update(FacebookPosts_RSSAPP_URL, 20)
+        parser = FacebookPage(FacebookPageURL)
+        parser.parse()
+        agent.update(parser)
         items["fbk"] = agent.items
     if "ytb" in mode:
         agent.update(Youtube_RSSAPP_URL, 20)
@@ -127,15 +133,25 @@ def social_updater(heap, mode=["ins", "fbk", "ytb"]):
 
 
 
-heap = "/home/ali/nk/src/server/heap/social"
+#heap = "/home/ali/nk/src/server/heap/social"
 #i = InstagramAgent("tr-tr")
 #f = FacebookAgent("tr-tr")
 #y = YoutubeAgent("tr-tr")
 #i.up(heap)
 #f.up(heap)
 #y.up(heap)
-social_updater(heap, ["ins"])
+#social_updater(heap, ["fbk"])
 
 #social = Social("tr-tr")
 #print(social.imgs)
+
+
+#def test_parser(uri="", fn=""):
+#    parser = InstagramPage(uri, fn, True)
+#    parser.parse()
+    #if(parser.status):
+    #    for elm in parser.elements:
+    #        print(elm.text_content())
+#test_parser(uri=InstagramPageURL)
+#test_parser(fn="/home/ali/nk/src/backend/instagram.com#pranik_arhat")
 

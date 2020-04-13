@@ -95,7 +95,7 @@ async def socUpdate():
                 if minute in ["05", "25", "45", "55"]:
                     social_updater(conf.SERVER.heap_path+"/social", ["ins"])
                     stage1.d("Social updated", "ins")
-                if minute == "00" and hour in list(range(8,24)):
+                if minute == "00" and hour in ["09", "12", "15", "21", "22", "23"]:
                     social_updater(conf.SERVER.heap_path+"/social", ["fbk", "ytb"])
                     stage1.d("Social updated", "fbk, ytb")
         except Exception as inst:
