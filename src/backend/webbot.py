@@ -140,7 +140,7 @@ def social_updater(heap, mode=["ins", "fbk", "ytb"]):
 #i.up(heap)
 #f.up(heap)
 #y.up(heap)
-#social_updater(heap, ["fbk"])
+#social_updater(heap, ["ins", "fbk"])
 
 #social = Social("tr-tr")
 #print(social.imgs)

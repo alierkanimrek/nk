@@ -59,11 +59,14 @@ class HTMLClient:
 
 
             
-    def load(self):
+    def load(self, mobile=True):
         if(self.url):
             try:
                 self._log.d("Loading",self.url)
-                r = requests.get(self.url, headers=HEADERS, timeout=15)
+                if mobile:
+                    r = requests.get(self.url, headers=HEADERS)
+                else:
+                    r = requests.get(self.url)
                 r.encoding = "UTF-8"
             except Exception as inst:
                 self._log.e_tb("Loading error", inst)
@@ -90,11 +93,14 @@ class HTMLClient:
 
 
 
-    def render(self):
+    def render(self, mobile=True):
         if(self.url):
             session = HTMLSession()
             try:
-                r = session.get(self.url, timeout=15)
+                if mobile:
+                    r = session.get(self.url, headers=HEADERS)
+                else:
+                    r = session.get(self.url)
                 r.encoding = "UTF-8"
             except Exception as inst:
                 self._log.e_tb("Loading error", inst)
@@ -239,7 +245,7 @@ class FacebookPage(HTMLClient):
 
 
     def parse(self):
-        self.render()
+        self.render(False)
         if(self.status):
             try:
                 for post in self.elements.xpath('//div[@class="_1xnd"]')[0].xpath("div"):
