@@ -35,7 +35,7 @@ class Agent(object):
 
 
 
-    def update(self, parser, count=0):
+    async def update(self, parser, count=0):
         self._items = []
         c=1
         for item in parser.items:
@@ -44,7 +44,7 @@ class Agent(object):
             imgFn = self._get_img_name(item["url"])[:200]+".jpg"
             imgFullFn = self._heap+"/"+imgFn
             if not os.path.isfile(imgFullFn):
-                parser.save_image(item["img"], imgFullFn)
+                await parser.save_image(item["img"], imgFullFn)
             item["img"] = imgFn
             item["desc"] = self._clear_hashtags(item["desc"])
             self._items.append(item)
@@ -81,7 +81,7 @@ class Agent(object):
 
 
 
-    def clear_heap(self, imgs):
+    async def clear_heap(self, imgs):
         for fn in glob.glob(self._heap+"/*.jpg"):
             if os.path.basename(fn) not in imgs:
                 os.remove(fn)
@@ -105,12 +105,12 @@ async def social_updater(heap, mode=["ins", "fbk", "ytb"]):
     if "ins" in mode:
         parser = InstagramPage(InstagramPageURL)
         await parser.arender()
-        agent.update(parser,  1)
+        await agent.update(parser,  1)
         items["ins"] = agent.items
     if "fbk" in mode:
         parser = FacebookPage(FacebookPageURL)
         await parser.arender()
-        agent.update(parser)
+        await agent.update(parser)
         items["fbk"] = agent.items
     if "ytb" in mode:
         agent.update(Youtube_RSSAPP_URL, 20)
@@ -121,7 +121,7 @@ async def social_updater(heap, mode=["ins", "fbk", "ytb"]):
     
     social.update(items)
     
-    agent.clear_heap(social.imgs)
+    await agent.clear_heap(social.imgs)
 
 
 
@@ -135,16 +135,16 @@ async def social_updater(heap, mode=["ins", "fbk", "ytb"]):
 
 
 async def test():
+    import logging
     from lib import KBLogger
-    log = KBLogger("test.log")
+    log = KBLogger("test.log", "nk")
     log.level = "DEBUG"
     LOG._ = log
 
     heap = "/home/ali/nk/src/server/heap/social"
     fn="/home/ali/nk/src/backend/instagram.com#pranik_arhat"
 
-    await social_updater(heap, ["ins", "fbk"])
-
+    await social_updater(heap, ["ins"])
     ioloop.IOLoop.instance().stop()
 
 

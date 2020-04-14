@@ -15,7 +15,6 @@ from lib import LOG
 
 
 
-
 HEADERS = {'User-Agent': "Mozilla/5.0 (Linux; U; Android 8.0; tr-tr; SM-T820NZKAXAR) AppleWebKit/604.5.6 (KHTML, like Gecko) Version/8.0 Mobile/15D60 Safari/604.1"}
 
 
@@ -172,7 +171,8 @@ class HTMLClient:
 
 
 
-    def save_image(self, url, fn):
+    async def save_image(self, url, fn):
+        print(self.url, fn)
         try:
             r = requests.get(url, stream=True)
             if r.status_code == 200:
