@@ -12,9 +12,6 @@ from lib import LOG
 
 
 
-#FacebookPosts_RSSAPP_URL = "https://rss.app/embed/v1/rmBj2GN3rS39NvvT"
-#Instagram_RSSAPP_URL = "https://rss.app/embed/v1/z3xerUfwq1l02wtu"
-#Youtube_RSSAPP_URL = "https://rss.app/embed/v1/Z5V5TP8jI03qGfve"
 InstagramPageURL = "https://instagram.com/pranik_arhat"
 FacebookPageURL = "https://facebook.com/antalyapraniksifa/posts"
 
@@ -97,7 +94,7 @@ class Agent(object):
 
 
 
-def social_updater(heap, mode=["ins", "fbk", "ytb"]):
+async def social_updater(heap, mode=["ins", "fbk", "ytb"]):
     items = {}
     ytb_items = []
     agent = Agent(heap)
@@ -107,12 +104,12 @@ def social_updater(heap, mode=["ins", "fbk", "ytb"]):
     #Get posts
     if "ins" in mode:
         parser = InstagramPage(InstagramPageURL)
-        parser.parse()
+        await parser.arender()
         agent.update(parser,  1)
         items["ins"] = agent.items
     if "fbk" in mode:
         parser = FacebookPage(FacebookPageURL)
-        parser.parse()
+        await parser.arender()
         agent.update(parser)
         items["fbk"] = agent.items
     if "ytb" in mode:
@@ -133,25 +130,25 @@ def social_updater(heap, mode=["ins", "fbk", "ytb"]):
 
 
 
-#heap = "/home/ali/nk/src/server/heap/social"
-#i = InstagramAgent("tr-tr")
-#f = FacebookAgent("tr-tr")
-#y = YoutubeAgent("tr-tr")
-#i.up(heap)
-#f.up(heap)
-#y.up(heap)
-#social_updater(heap, ["ins", "fbk"])
-
-#social = Social("tr-tr")
-#print(social.imgs)
 
 
-#def test_parser(uri="", fn=""):
-#    parser = InstagramPage(uri, fn, True)
-#    parser.parse()
-    #if(parser.status):
-    #    for elm in parser.elements:
-    #        print(elm.text_content())
-#test_parser(uri=InstagramPageURL)
-#test_parser(fn="/home/ali/nk/src/backend/instagram.com#pranik_arhat")
 
+
+async def test():
+    from lib import KBLogger
+    log = KBLogger("test.log")
+    log.level = "DEBUG"
+    LOG._ = log
+
+    heap = "/home/ali/nk/src/server/heap/social"
+    fn="/home/ali/nk/src/backend/instagram.com#pranik_arhat"
+
+    await social_updater(heap, ["ins", "fbk"])
+
+    ioloop.IOLoop.instance().stop()
+
+
+#from tornado import ioloop
+#loop = loop = ioloop.IOLoop.instance()
+#loop.add_callback(test)
+#loop.start()
