@@ -96,8 +96,8 @@ async def socUpdate():
                     await social_updater(conf.SERVER.heap_path+"/social", ["ins"])
                     stage1.d("Social updated", "ins")
                 if minute == "00" and hour in [9, 12, 15, 18, 20, 21, 22, 23]:
-                    await social_updater(conf.SERVER.heap_path+"/social", ["fbk"])
-                    stage1.d("Social updated", "fbk")
+                    await social_updater(conf.SERVER.heap_path+"/social", ["fbk", "ytb"])
+                    stage1.d("Social updated", "fbk, ytb")
         except Exception as inst:
             stage1.e_tb("Social updating failed", inst)
 
