@@ -7,6 +7,7 @@ import asyncio
 import requests
 from requests_html import HTMLSession, AsyncHTMLSession
 from lxml.html import fromstring
+from bs4 import BeautifulSoup
 import json
 import shutil
 import urllib
@@ -94,26 +95,29 @@ class HTMLClient:
 
     async def aload(self, mobile=True, render=False):
         try:
-            if render:
-                session = AsyncHTMLSession()
-                session.debuglevel = 0
-                if mobile:  r = await session.get(self.url, headers=HEADERS)
-                else:   r = await session.get(self.url)
-                r.encoding = "UTF-8"
-            else:
-                if mobile:  r = requests.get(self.url, headers=HEADERS)
-                else:   r = requests.get(self.url)
-                r.encoding = "UTF-8"
-            if r.status_code == 200:
+            if self.url:
                 if render:
-                    await r.html.arender()
-                    self.raw = r.html.html
+                    session = AsyncHTMLSession()
+                    session.debuglevel = 0
+                    if mobile:  r = await session.get(self.url, headers=HEADERS)
+                    else:   r = await session.get(self.url)
+                    r.encoding = "UTF-8"
                 else:
-                    self.raw = r.text
-                self._parse()
-                if self.save:
-                    self._save(self.url.replace("https://", "").replace("/","#"), self.raw)
-                return(True)
+                    if mobile:  r = requests.get(self.url, headers=HEADERS)
+                    else:   r = requests.get(self.url)
+                    r.encoding = "UTF-8"
+                if r.status_code == 200:
+                    if render:
+                        await r.html.arender()
+                        self.raw = r.html.html
+                    else:
+                        self.raw = r.text
+                    self._parse()
+            elif self.file:
+                self.load_file()
+            if self.save:
+                self._save(self.url.replace("https://", "").replace("/","#"), self.raw)
+            return(True)
         except Exception as inst:
             self._log.e_tb("Loading error", inst)
         return(False)
@@ -171,6 +175,7 @@ class HTMLClient:
     def _parse(self):
         try:
             self.elements = fromstring(self.raw)
+            #self.elements = BeautifulSoup(self.raw,"lxml")
             if(self.elements):   self.status = True
             return(True)
         except Exception as inst:
@@ -335,3 +340,47 @@ class FacebookPage(HTMLClient):
                     self.items.append(vars(social))
         except Exception as inst:
             self._log.e_tb("Parsing error", inst)
+
+
+
+
+
+
+
+
+class YoutubeVideos(HTMLClient):
+
+
+
+
+    def __init__(self, url:str="", file:str="", save:bool=False):
+        super(YoutubeVideos, self).__init__(url=url, file=file, save=save)
+        self.items = []
+        self._log = LOG._.job("YoutubeVideos")
+        self._fbprefix = "https://youtube.com"
+
+
+
+    async def arender(self):
+        await self.aload(mobile=False)
+        if(self.status):    self.parse()
+
+
+
+    def parse(self):
+        try:
+            for post in self.elements.xpath("//ul[@id='channels-browse-content-grid']")[0].xpath("li"):
+                social = SocialItem()
+                imgs = post.xpath(".//img")
+                a = post.xpath(".//a")
+
+                social.img = imgs[0].attrib["src"]
+                social.title = a[1].text
+                social.desc = a[1].text
+                social.url = self._fbprefix+a[1].attrib["href"]
+                self.items.append(vars(social))
+        except Exception as inst:
+            self._log.e_tb("Parsing error", inst)
+
+
+            

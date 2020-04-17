@@ -5,7 +5,7 @@
 
 import os
 import glob
-from lib import InstagramPage, FacebookPage
+from lib import InstagramPage, FacebookPage, YoutubeVideos
 from parts import Social
 from lib import LOG
 
@@ -14,6 +14,7 @@ from lib import LOG
 
 InstagramPageURL = "https://instagram.com/pranik_arhat"
 FacebookPageURL = "https://facebook.com/antalyapraniksifa/posts"
+YoutubeVideosURL = "https://www.youtube.com/channel/UCqeqZ7VC4TXdDSaHB9gh2ow/videos"
 
 
 
@@ -113,12 +114,10 @@ async def social_updater(heap, mode=["ins", "fbk", "ytb"]):
         await agent.update(parser)
         items["fbk"] = agent.items
     if "ytb" in mode:
-        agent.update(Youtube_RSSAPP_URL, 20)
-        for ytb_itm in agent.items:
-            ytb_itm["desc"] = ""
-            ytb_items.append(ytb_itm)
-        items["ytb"] = ytb_items
-    
+        parser = YoutubeVideos(YoutubeVideosURL)
+        await parser.arender()
+        await agent.update(parser, 1)
+        items["ytb"] = agent.items    
     social.update(items)
     
     await agent.clear_heap(social.imgs)
@@ -133,7 +132,7 @@ async def social_updater(heap, mode=["ins", "fbk", "ytb"]):
 
 
 
-
+"""
 async def test():
     import logging
     from lib import KBLogger
@@ -142,13 +141,14 @@ async def test():
     LOG._ = log
 
     heap = "/home/ali/nk/src/server/heap/social"
-    fn="/home/ali/nk/src/backend/instagram.com#pranik_arhat"
 
-    await social_updater(heap, ["fbk"])
+    await social_updater(heap, ["ytb"])
     ioloop.IOLoop.instance().stop()
 
 
-#from tornado import ioloop
-#loop = loop = ioloop.IOLoop.instance()
-#loop.add_callback(test)
-#loop.start()
+fn=""
+from tornado import ioloop
+loop = loop = ioloop.IOLoop.instance()
+loop.add_callback(test)
+loop.start()
+"""
