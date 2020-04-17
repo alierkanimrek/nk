@@ -92,16 +92,24 @@ class HTMLClient:
 
 
 
-    async def aload(self, mobile=True):
+    async def aload(self, mobile=True, render=False):
         try:
-            session = AsyncHTMLSession()
-            session.debuglevel = 0
-            if mobile:  r = await session.get(self.url, headers=HEADERS)
-            else:   r = await session.get(self.url)
-            r.encoding = "UTF-8"
+            if render:
+                session = AsyncHTMLSession()
+                session.debuglevel = 0
+                if mobile:  r = await session.get(self.url, headers=HEADERS)
+                else:   r = await session.get(self.url)
+                r.encoding = "UTF-8"
+            else:
+                if mobile:  r = requests.get(self.url, headers=HEADERS)
+                else:   r = requests.get(self.url)
+                r.encoding = "UTF-8"
             if r.status_code == 200:
-                await r.html.arender()
-                self.raw = r.html.html
+                if render:
+                    await r.html.arender()
+                    self.raw = r.html.html
+                else:
+                    self.raw = r.text
                 self._parse()
                 if self.save:
                     self._save(self.url.replace("https://", "").replace("/","#"), self.raw)
@@ -172,7 +180,6 @@ class HTMLClient:
 
 
     async def save_image(self, url, fn):
-        print(self.url, fn)
         try:
             r = requests.get(url, stream=True)
             if r.status_code == 200:
@@ -240,12 +247,21 @@ class InstagramPage(HTMLClient):
             nodes += user["edge_owner_to_timeline_media"]["edges"]
             for node in nodes:
                 n = node["node"]
+                id = url = n["id"]
                 url = n["shortcode"]
                 cap = n["edge_media_to_caption"]["edges"][0]["node"]["text"]
-                img = n["thumbnail_resources"][len(n["thumbnail_resources"])-1]["src"]
-                self._nodes[url] = {"cap" :cap, "img": img}
-
+                #img = n["thumbnail_resources"][len(n["thumbnail_resources"])-1]["src"]
+                img = n["display_url"]
+                self._nodes[id] = {"url": url, "cap" :cap, "img": img}
+            self._nodes = dict(sorted(self._nodes.items(), reverse=True))
+            for id in self._nodes.keys():
+                social = SocialItem()
+                social.url = self._nodes[id]["url"]
+                social.img = self._nodes[id]["img"]
+                social.desc = self._nodes[id]["cap"]
+                self.items.append(vars(social))
             # Parse HTML
+            """
             for a in self.elements.xpath("//article")[0].xpath(".//a"):
                 social = SocialItem()
                 social.url = "https://instagram.com"+a.attrib["href"]
@@ -254,6 +270,7 @@ class InstagramPage(HTMLClient):
                 #social.img = a.xpath(".//img")[0].attrib["src"]
                 social.img = self._nodes[code]["img"]
                 self.items.append(vars(social))
+            """
         except Exception as inst:
             self._log.e_tb("Parsing error", inst)
 

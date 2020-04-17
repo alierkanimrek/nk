@@ -103,7 +103,7 @@ async def social_updater(heap, mode=["ins", "fbk", "ytb"]):
     
     #Get posts
     if "ins" in mode:
-        parser = InstagramPage(InstagramPageURL)
+        parser = InstagramPage(InstagramPageURL, save=True)
         await parser.arender()
         await agent.update(parser,  1)
         items["ins"] = agent.items

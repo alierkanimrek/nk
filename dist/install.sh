@@ -37,6 +37,7 @@ mkdir -p $nginx
 /bin/cp -Rv nginx_root/* $nginx
 
 chown -R admin:admin $app
+chown -R admin:admin $nginx/heap/social
 #chown -R nginx:nginx $nginx
 chmod -R 775 $nginx
 chmod -R 775 $app 
