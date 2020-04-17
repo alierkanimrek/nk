@@ -163,7 +163,7 @@ class HTMLClient:
             fh.write(raw)
             fh.close()
         except Exception as inst:
-            self._log.e_tb("Saving error", inst)
+            self._log.e_tb("Saving error", inst, fn)
 
 
 
@@ -189,7 +189,7 @@ class HTMLClient:
                 self._log.e("IMG not loaded", r.status_code)
             del r
         except Exception as inst:
-            self._log.e_tb("IMG Loading error", inst)
+            self._log.e_tb("IMG Loading error", inst, url)
 
 
 
@@ -331,6 +331,7 @@ class FacebookPage(HTMLClient):
                        social.url = self._fbprefix+a.attrib["href"]
                        break
                 social.url = social.url[:social.url.find("?")]
-                self.items.append(vars(social))
+                if social.url:
+                    self.items.append(vars(social))
         except Exception as inst:
             self._log.e_tb("Parsing error", inst)

@@ -103,7 +103,7 @@ async def social_updater(heap, mode=["ins", "fbk", "ytb"]):
     
     #Get posts
     if "ins" in mode:
-        parser = InstagramPage(InstagramPageURL, save=True)
+        parser = InstagramPage(InstagramPageURL)
         await parser.arender()
         await agent.update(parser,  1)
         items["ins"] = agent.items
@@ -144,7 +144,7 @@ async def test():
     heap = "/home/ali/nk/src/server/heap/social"
     fn="/home/ali/nk/src/backend/instagram.com#pranik_arhat"
 
-    await social_updater(heap, ["ins"])
+    await social_updater(heap, ["fbk"])
     ioloop.IOLoop.instance().stop()
 
 
