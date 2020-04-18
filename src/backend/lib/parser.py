@@ -13,6 +13,7 @@ import shutil
 import urllib
 import time
 from lib import LOG
+import os
 
 
 
@@ -185,16 +186,17 @@ class HTMLClient:
 
 
     async def save_image(self, url, fn):
-        try:
-            r = requests.get(url, stream=True)
-            if r.status_code == 200:
-                with open(fn, "wb+") as out_file:
-                    shutil.copyfileobj(r.raw, out_file)
-            else:
-                self._log.e("IMG not loaded", r.status_code)
-            del r
-        except Exception as inst:
-            self._log.e_tb("IMG Loading error", inst, url)
+        if not os.path.exists(fn):
+            try:
+                r = requests.get(url, stream=True)
+                if r.status_code == 200:
+                    with open(fn, "wb+") as out_file:
+                        shutil.copyfileobj(r.raw, out_file)
+                else:
+                    self._log.e("IMG not loaded", r.status_code)
+                del r
+            except Exception as inst:
+                self._log.e_tb("IMG Loading error", inst, url)
 
 
 
@@ -223,6 +225,7 @@ class InstagramPage(HTMLClient):
         self._splitter_start = "window._sharedData = "
         self._splitter_end = ";</script>"
         self._nodes = {}
+        self._prefix = "https://instagram.com/p/"
 
 
 
@@ -261,7 +264,7 @@ class InstagramPage(HTMLClient):
             self._nodes = dict(sorted(self._nodes.items(), reverse=True))
             for id in self._nodes.keys():
                 social = SocialItem()
-                social.url = self._nodes[id]["url"]
+                social.url = self._prefix+self._nodes[id]["url"]
                 social.img = self._nodes[id]["img"]
                 social.desc = self._nodes[id]["cap"]
                 self.items.append(vars(social))
