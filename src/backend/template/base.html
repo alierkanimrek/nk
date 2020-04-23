@@ -8,10 +8,11 @@
     {% for key in glob.data["meta"].keys() %}
       <meta name="{{ key }}" content="{{ glob.data["meta"][key] }}">
     {% end %}
-    <link rel="stylesheet" href="heap/bulma.min.css">
-    <!-- <link rel="stylesheet" href="heap/fontawesome/css/all.css"> -->
-    <link rel="stylesheet" href="heap/main.css">
+    <link rel="stylesheet" href="/heap/bulma.min.css">
+    <!-- <link rel="stylesheet" href="/heap/fontawesome/css/all.css"> -->
+    <link rel="stylesheet" href="/heap/main.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <style>
         .bgimage {
           background-image: url("/heap/glob/{{ escape(glob.data["background"]) }}");
@@ -58,7 +59,7 @@ ________________________________________________________________________________
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
       {% for item in glob.data["menu"] %}
-        {% if item["label"] not in glob.title(template) %}
+        {% if item["page"] != "/"+template %}
           <a class="navbar-item" href="{{ item["page"] }}">
             {{ item["label"] }}
           </a>
@@ -134,14 +135,14 @@ ________________________________________________________________________________
                     
                     <div class="column has-text-centered">
                         <a target="_blank" href="mailto:{{ escape(glob.data["contact"]["mail"]) }}">
-                            <img class="social_img" src="heap/icons/gm.svg"></img>
+                            <img class="social_img" src="/heap/icons/gm.svg"></img>
                             <p class="has-text-centered">{{ escape(glob.data["contact"]["mailLabel"]) }}</p>
                             </a>
                     </div>
                     
                     <div class="column has-text-centered">
                         <a target="_blank" href="{{ escape(glob.data["contact"]["instagram"]) }}">
-                            <img class="social_img" src="heap/icons/ins.svg"></img>
+                            <img class="social_img" src="/heap/icons/ins.svg"></img>
                             <p  class="has-text-centered">{{ escape(glob.data["contact"]["instagramLabel"]) }}</p>
                             
                         </a>
@@ -149,14 +150,14 @@ ________________________________________________________________________________
 
                     <div class="column has-text-centered">
                         <a target="_blank" href="{{ escape(glob.data["contact"]["facebook"]) }}">
-                            <img class="social_img" src="heap/icons/fb.svg"></img>
+                            <img class="social_img" src="/heap/icons/fb.svg"></img>
                             <p class="has-text-centered">{{ escape(glob.data["contact"]["facebookLabel"]) }}</p>
                         </a>
                     </div>
 
                     <div class="column has-text-centered">
                         <a target="_blank" href="{{ escape(glob.data["contact"]["facebook2"]) }}">
-                            <img class="social_img" src="heap/icons/fb.svg"></img>
+                            <img class="social_img" src="/heap/icons/fb.svg"></img>
                             <p class="has-text-centered">{{ escape(glob.data["contact"]["facebookLabel2"]) }}</p>
                         </a>
                     </div>
@@ -164,14 +165,14 @@ ________________________________________________________________________________
 
                     <div class="column has-text-centered">
                         <a target="_blank" href="{{ escape(glob.data["contact"]["youtube"]) }}">
-                            <img class="social_img" src="heap/icons/yb.svg"></img>
+                            <img class="social_img" src="/heap/icons/yb.svg"></img>
                             <p class="has-text-centered">{{ escape(glob.data["contact"]["youtubeLabel"]) }}</p>
                         </a>
                     </div>
 
                     <div class="column has-text-centered">
                         <a target="_blank" href="{{ escape(glob.data["contact"]["blog"]) }}">
-                            <img class="social_img" src="heap/icons/bg.svg"></img>
+                            <img class="social_img" src="/heap/icons/bg.svg"></img>
                             <p class="has-text-centered">{{ escape(glob.data["contact"]["blogLabel"]) }}</p>
                         </a>
                     </div>

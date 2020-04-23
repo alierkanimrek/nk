@@ -13,43 +13,38 @@
             <div class="column">
                 <div class="hero-body">
                     <div class="container has-text-centered">
-                    <h1 class="title">{{ escape(prof.data[id]["name"]) }}</h1>
+                    <h1 class="title">{{ escape(glob.title(template)) }}</h1>
+                    <a href="https://forms.gle/ttqqBhv7VuGcVtiS6" target="_blank"><button class="button is-success">Yorum Yapın</button></a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="reading">
-            <p>{% raw prof.data[id]["summary"] %}</p>
-            <p>{% raw prof.data[id]["full"] %}</p>
-            <a href="https://forms.gle/ttqqBhv7VuGcVtiS6" target="_blank"><button class="button is-success">Yorum Yapın</button></a>
-        </div>
     </div>
 </section>
 
 
-{% if len(form1.formdata.comments) > 0 %}
+{% if form1.last %}
 <section class="hero">
+    
     <div class="container">
-        <div class="columns is-vcentered is-mobile">
+        {% for comment in form1.formdata.comments %}
+        <div class="columns is-mobile" >
             <div class="column is-narrow">
                 <i class="fa fa-comments is-size-1"></i>
             </div>
             <div class="column">
-                <span class="has-text-link">@{{escape(form1.random.nickname)}}</span>
-                <p class="is-italic">{{escape(form1.random.comment)}} 
-                    <span class="has-text-grey-light has-text-right is-size-7">&nbsp;&nbsp;{{escape(form1.random.time)}}</span>
+                <span class="has-text-link">@{{escape(comment.nickname)}}</span>
+                <p class="is-italic">{{escape(comment.comment)}} 
+                    <span class="has-text-grey-light has-text-right is-size-7">&nbsp;&nbsp;{{escape(comment.time)}}</span>
                 </p>
-                <a href="/danismanlik/yorum"><button class="button is-info">Tüm Yorumlar</button></a>
             </div>
         </div>
+        {% end %}
+        <a href="https://forms.gle/ttqqBhv7VuGcVtiS6" target="_blank"><button class="button is-success">Yorum Yapın</button></a>
     </div>
 </section>
 {% end %}
-
 <!-- END CONTENT -->
-
-
-{% include profession.html %}
 
 
 {% end %}

@@ -5,9 +5,9 @@
 
 import asyncio
 import requests
-from requests_html import HTMLSession, AsyncHTMLSession
+#from requests_html import HTMLSession, AsyncHTMLSession
 from lxml.html import fromstring
-from bs4 import BeautifulSoup
+#from bs4 import BeautifulSoup
 import json
 import shutil
 import urllib

@@ -5,8 +5,8 @@
 
 import os
 import glob
-from lib import InstagramPage, FacebookPage, YoutubeVideos
-from parts import Social
+from lib import InstagramPage, FacebookPage, YoutubeVideos, GForm
+from parts import Social, Form1
 from lib import LOG
 
 
@@ -15,6 +15,7 @@ from lib import LOG
 InstagramPageURL = "https://instagram.com/pranik_arhat"
 FacebookPageURL = "https://facebook.com/antalyapraniksifa/posts"
 YoutubeVideosURL = "https://www.youtube.com/channel/UCqeqZ7VC4TXdDSaHB9gh2ow/videos"
+GForm1TSVURL = "https://docs.google.com/spreadsheets/d/1nEz_9Kqz0g86uSTxzggwS3--GjpiKb9V4xP0ISEZJZM/export?format=tsv&id=1nEz_9Kqz0g86uSTxzggwS3--GjpiKb9V4xP0ISEZJZM&gid=779288960"
 
 
 
@@ -95,11 +96,12 @@ class Agent(object):
 
 
 
-async def social_updater(heap, mode=["ins", "fbk", "ytb"]):
+async def social_updater(heap, mode=["ins", "fbk", "ytb", "gf1"]):
     items = {}
     ytb_items = []
     agent = Agent(heap)
     social = Social("tr-tr")
+    form1 = Form1("tr-tr")
     items = social.data
     
     #Get posts
@@ -118,6 +120,12 @@ async def social_updater(heap, mode=["ins", "fbk", "ytb"]):
         await parser.arender()
         await agent.update(parser, 1)
         items["ytb"] = agent.items    
+    if "gf1" in mode:
+        #parser = GForm(file=fn)
+        parser = GForm(GForm1TSVURL)
+        await parser.aload()
+        await form1.update(parser.titles, parser.items)
+        
     social.update(items)
     
     await agent.clear_heap(social.imgs)
@@ -132,23 +140,22 @@ async def social_updater(heap, mode=["ins", "fbk", "ytb"]):
 
 
 
-"""
+
 async def test():
     import logging
     from lib import KBLogger
-    log = KBLogger("test.log", "nk")
+    log = KBLogger("test.log")
     log.level = "DEBUG"
     LOG._ = log
 
     heap = "/home/ali/nk/src/server/heap/social"
 
-    await social_updater(heap, ["ytb"])
+    await social_updater(heap, ["gf1"])
     ioloop.IOLoop.instance().stop()
 
 
-fn=""
-from tornado import ioloop
-loop = loop = ioloop.IOLoop.instance()
-loop.add_callback(test)
-loop.start()
-"""
+#fn="docs.google.com#spreadsheets#d#1nEz_9Kqz0g86uSTxzggwS3--GjpiKb9V4xP0ISEZJZM#export?format=tsv&id=1nEz_9Kqz0g86uSTxzggwS3--GjpiKb9V4xP0ISEZJZM&gid=779288960"
+#from tornado import ioloop
+#loop = loop = ioloop.IOLoop.instance()
+#loop.add_callback(test)
+#loop.start()

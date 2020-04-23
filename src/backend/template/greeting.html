@@ -33,3 +33,20 @@ ________________________________________________________________________________
         </div>
     </div>
 </section>
+{% if form1.random %}
+<section class="hero">
+    <div class="container">
+        <div class="columns is-vcentered is-mobile">
+            <div class="column is-narrow">
+                <i class="fa fa-comments is-size-1"></i>
+            </div>
+            <div class="column">
+                <span class="has-text-link">@{{escape(form1.random.nickname)}}</span>
+                <p class="is-italic">{{escape(form1.random.comment)}} 
+                    <span class="has-text-grey-light has-text-right is-size-7">&nbsp;&nbsp;{{escape(form1.random.time)}}</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+{% end %}

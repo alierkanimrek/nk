@@ -6,7 +6,7 @@
 
 
 from base import BaseHandler
-from parts import Greeting, Prof, Social
+from parts import Greeting, Prof, Social, Form1
 
 
 
@@ -18,11 +18,13 @@ class MainHandler(BaseHandler):
         greeting = Greeting(self.lang, self.conf.SERVER.heap_path)
         prof = Prof(self.lang, self.conf.SERVER.heap_path)
         soc = Social(self.lang)
+        form1 = Form1(self.lang)
         await self.render_page(
             template=temp,
             greeting=greeting,
             prof=prof,
-            soc=soc
+            soc=soc,
+            form1=form1
             )
 
 
@@ -38,11 +40,37 @@ class DanismanlikHandler(BaseHandler):
         id = "prof1"
         temp = "danismanlik"
         prof = Prof(self.lang, self.conf.SERVER.heap_path)
+        form1 = Form1(self.lang)
         await self.render_page(
             template=temp,
             id=id,
             prof=prof,
+            form1=form1
             )
+
+
+
+
+
+
+
+
+class DanismanlikYorumHandler(BaseHandler):
+
+    
+    async def get(self):
+        id = "prof1"
+        temp = "danismanlikyorum"
+        prof = Prof(self.lang, self.conf.SERVER.heap_path)
+        form1 = Form1(self.lang)
+        form1.formdata.comments.reverse()
+        await self.render_page(
+            template=temp,
+            id=id,
+            prof=prof,
+            form1=form1
+            )
+
 
 
 
@@ -89,6 +117,7 @@ class KisiselGHandler(BaseHandler):
 mainRouting = [
     (r"/", MainHandler),
     (r"/danismanlik", DanismanlikHandler),
+    (r"/danismanlik/yorum", DanismanlikYorumHandler),
     (r"/seminer", SeminerHandler),
     (r"/kisiselgelisim", KisiselGHandler)
     ]

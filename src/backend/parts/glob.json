@@ -3,13 +3,14 @@
         "titles" : {
             "main":"Nuray KAYA",
             "danismanlik":"Nuray Kaya - Danışmanlık",
+            "danismanlikyorum":"Nuray Kaya - Danışmanlık Yorumları",
             "seminer":"Nuray Kaya - Seminer",
             "kisiselgelisim":"Nuray Kaya - Kişisel Gelişim"
         },
         "menu" : [
-            {"label": "Danışmanlık", "page": "danismanlik"},
-            {"label": "Seminer", "page": "seminer"},
-            {"label": "Kişisel Gelişim", "page": "kisiselgelisim"},
+            {"label": "Danışmanlık", "page": "/danismanlik"},
+            {"label": "Seminer", "page": "/seminer"},
+            {"label": "Kişisel Gelişim", "page": "/kisiselgelisim"},
             {"label": "İletişim", "page": "#contact"}
         ],
         "meta": {

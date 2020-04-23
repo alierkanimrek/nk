@@ -63,8 +63,8 @@ class Parts():
         swap = self._data
         swap[self.lang] = content
         try:
-            jsn = json.dumps(swap, indent=4, separators=(',', ': '))
-            fh = open(self._fn, "w+")
+            jsn = json.dumps(swap, indent=4, separators=(',', ': '), ensure_ascii=False)
+            fh = open(self._fn, "w+", encoding='utf8')
             fh.write(jsn)
             fh.close()
         except Exception as inst:
