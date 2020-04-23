@@ -70,10 +70,11 @@ class Form1(Parts):
             com = Form1Comment(comment)
             self.formdata.comments.append(com)
         if len(self.formdata.comments) > 2:
-            self.choose()
             self.last = self.formdata.comments[len(self.formdata.comments)-1]
-        else:
+        elif len(self.formdata.comments) == 1:
             self.last = self.formdata.comments[0]
+        self.choose()
+
 
 
 
@@ -99,7 +100,7 @@ class Form1(Parts):
         rnd = Form1Comment()
         if len(self.formdata.comments) > 2:
             rnd = self.formdata.comments[random.randrange(len(self.formdata.comments)-1)]
-        else:
+        elif len(self.formdata.comments) == 1:
             rnd = self.formdata.comments[0]
         self.random = rnd
         return(rnd)
