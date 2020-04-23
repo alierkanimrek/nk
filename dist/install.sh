@@ -21,15 +21,16 @@ backup=$path/backup
 systemctl stop nginx.service
 systemctl stop appservice.service
 
+/bin/rm -rf $backup/*
+
 mkdir -p $app
 mkdir -p $backup/app
 
-/bin/rm -rf $backup/*
 /bin/cp -Rv $app/* $backup/app
 /bin/rm -rf $app/*
 /bin/cp -Rv tornado_root/* $app
 /bin/cp -v $backup/app/config.conf $app
-/bin/cp -v $backup/app/*log* $app
+/bin/cp -v $backup/app/*.log* $app
 /bin/cp -v $backup/app/parts/*.json $app/parts
 
 mkdir -p $nginx
