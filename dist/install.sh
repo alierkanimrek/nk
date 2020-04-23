@@ -22,19 +22,23 @@ systemctl stop nginx.service
 systemctl stop appservice.service
 
 mkdir -p $app
-mkdir -p $backup
+mkdir -p $backup/app
 
 /bin/rm -rf $backup/*
-/bin/cp -v $app/*.conf $backup
-/bin/cp -v $app/*.log.* $backup
-/bin/cp -v $app/*.log $backup
+/bin/cp -Rv $app/* $backup/app
 /bin/rm -rf $app/*
 /bin/cp -Rv tornado_root/* $app
-/bin/cp -v $backup/* $app
+/bin/cp -v $backup/app/config.conf $app
+/bin/cp -v $backup/app/*log* $app
+/bin/cp -v $backup/app/parts/*.json $app/parts
 
 mkdir -p $nginx
+mkdir -p $backup/nginx
+
+/bin/cp -Rv $nginx/* $backup/nginx
 /bin/rm -rf $nginx/*
 /bin/cp -Rv nginx_root/* $nginx
+/bin/cp -v $backup/nginx/heap/social/* $nginx/heap/social
 
 chown -R admin:admin $app
 chown -R admin:admin $nginx/heap/social
