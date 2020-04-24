@@ -42,7 +42,8 @@ ________________________________________________________________________________
             </div>
             <div class="column">
                 <span class="has-text-link">@{{escape(form1.random.nickname)}}</span>
-                <p class="is-italic">{{escape(form1.random.comment)}} 
+                <p class="is-italic">{{escape(form1.random.comment[:250])}}...
+                    <a href="/danismanlik/yorum"><i class="fas fa-angle-double-right"></i></a>
                     <span class="has-text-grey-light has-text-right is-size-7">&nbsp;&nbsp;{{escape(form1.random.time)}}</span>
                 </p>
             </div>
