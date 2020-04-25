@@ -26,22 +26,47 @@
 {% if form1.last %}
 <section class="hero">
     
-    <div class="container">
+    <div class="container" style="width:100%;">
         {% for comment in form1.formdata.comments %}
-        <div class="columns is-mobile" >
-            <div class="column is-narrow">
-                <i class="fa fa-comments is-size-1"></i>
-            </div>
-            <div class="column">
-                <span class="has-text-link">@{{escape(comment.nickname)}}</span>
-                <p class="is-italic">{{escape(comment.comment)}} 
-                    <span class="has-text-grey-light has-text-right is-size-7">&nbsp;&nbsp;{{escape(comment.time)}}</span>
+        <a name="{{url_escape(comment.nickname)}}"></a>
+        <br/><br/>
+        <div class="">
+            <div class="">
+                <div style="float:left; margin-right: 0.5rem;">
+                    <i class="fa fa-comments is-size-2"></i>
+                </div>
+                <span class="has-text-link is-size-5">@{{escape(comment.nickname)}}&nbsp;</span>
+                <span>
+                    
+                    {% for star in range(int(comment.vote.split(" ")[0])) %}
+                    <i class="fa fa-star" style="color:#ffb600;"></i>
+                    {% end %}
+                </span>
+                <p >
+                    <span class="is-italic">{{comment.comment}}</span>
+                    <span class="has-text-grey-light has-text-right is-size-7">&nbsp;{{escape(comment.time)}}</span>
+                    <span style="float:right; margin: 0;">
+                        <input  value="https://nuraykaya.com/danismanlik/yorum#{{url_escape(comment.nickname)}}" style="visibility: hidden; width: 0; height: 0;"></input>
+                        <i class="fa fa-share-alt" onclick="copyurl(event)"></i>
+                    </span>                
                 </p>
             </div>
+
         </div>
         {% end %}
         <a href="https://forms.gle/ttqqBhv7VuGcVtiS6" target="_blank"><button class="button is-success">Yorum Yapın</button></a>
     </div>
+    <script type="text/javascript">
+        function copyurl(e) {
+          var input = e.target.previousElementSibling;
+          console.log(input)
+          input.style.visibility = "";
+          input.select();
+          document.execCommand("copy");
+          input.style.visibility = "hidden";
+          e.target.className = "fa fa-copy"
+        }
+    </script>
 </section>
 {% end %}
 <!-- END CONTENT -->

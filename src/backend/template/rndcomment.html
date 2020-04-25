@@ -1,0 +1,26 @@
+<!-- COMMENT CONTENT -->
+{% if len(form1.formdata.comments) > 0 %}
+<section class="hero">    
+    <div class="container" style="width:100%;">
+        <div class="">
+            <div class="">
+                <div style="float:left; margin-right: 0.5rem;">
+                    <i class="fa fa-comments is-size-2"></i>
+                </div>
+                <span class="has-text-link is-size-5">@{{form1.random.nickname}}&nbsp;</span>
+                <span>
+                    {% for star in range(int(form1.random.vote.split(" ")[0])) %}
+                    <i class="fa fa-star" style="color:#ffb600;"></i>
+                    {% end %}
+                </span>
+                <p>
+                    <span class="is-italic">{{form1.random.comment[:250]}}</span>
+                    <a href="/danismanlik/yorum#{{url_escape(form1.random.nickname)}}">&nbsp;<i class="fas fa-angle-double-right"></i></a>
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+{% end %}
+<!-- END CONTENT -->
