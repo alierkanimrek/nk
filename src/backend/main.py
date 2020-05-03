@@ -85,10 +85,12 @@ class SeminerHandler(BaseHandler):
         id = "prof2"
         temp = "seminer"
         prof = Prof(self.lang, self.conf.SERVER.heap_path)
+        soc = Social(self.lang)
         await self.render_page(
             template=temp,
             id=id,
             prof=prof,
+            soc=soc
             )
 
 
@@ -103,10 +105,12 @@ class KisiselGHandler(BaseHandler):
         id = "prof3"
         temp = "kisiselgelisim"
         prof = Prof(self.lang, self.conf.SERVER.heap_path)
+        soc = Social(self.lang)
         await self.render_page(
             template=temp,
             id=id,
             prof=prof,
+            soc=soc
             )
 
 

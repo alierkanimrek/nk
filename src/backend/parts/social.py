@@ -50,4 +50,20 @@ class Social(Parts):
             for item in self.data[soc]:
                 imgs.append(item["img"])
         return(imgs)
+
+
+
+
+    @property
+    def events(self, max=4):
+        events = []
+        try:
+            for item in self.data["fbk"]:
+                if '/events/' in item["url"]:
+                    events.append(item)
+                if len(events) == max:
+                    break
+        except:
+            pass
+        return(events)
     

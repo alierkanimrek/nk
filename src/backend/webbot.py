@@ -109,22 +109,22 @@ async def social_updater(heap, mode=["ins", "fbk", "ytb", "gf1"]):
         parser = InstagramPage(InstagramPageURL)
         await parser.arender()
         await agent.update(parser,  1)
-        items["ins"] = agent.items
+        if agent.items: items["ins"] = agent.items
     if "fbk" in mode:
         parser = FacebookPage(FacebookPageURL)
         await parser.arender()
         await agent.update(parser)
-        items["fbk"] = agent.items
+        if agent.items: items["fbk"] = agent.items
     if "ytb" in mode:
         parser = YoutubeVideos(YoutubeVideosURL)
         await parser.arender()
         await agent.update(parser, 1)
-        items["ytb"] = agent.items    
+        if agent.items: items["ytb"] = agent.items    
     if "gf1" in mode:
         #parser = GForm(file=fn)
         parser = GForm(GForm1TSVURL)
         await parser.aload()
-        await form1.update(parser.titles, parser.items)
+        if parser.items:   await form1.update(parser.titles, parser.items)
         
     social.update(items)
     
@@ -150,7 +150,7 @@ async def test():
 
     heap = "/home/ali/nk/src/server/heap/social"
 
-    await social_updater(heap, ["gf1"])
+    await social_updater(heap)
     ioloop.IOLoop.instance().stop()
 
 

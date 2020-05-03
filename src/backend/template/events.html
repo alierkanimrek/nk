@@ -1,0 +1,50 @@
+<!--
+_______________________________________________________________________________________________
+
+
+
+
+                    FACEBOOK EVENTS PLATFORMS
+
+
+
+_______________________________________________________________________________________________
+-->
+<section class="">
+    <div class="container">
+            <div class="columns">
+                {% if len(soc.events) > 0 %}
+                {% for event in soc.events %}
+                <div class="column is-one-quarter">
+                    <div class="card large">
+                        <a class="cardlink" href="{{ escape(event['url']) }}" target="_blank">
+                        <div class="card-image">
+                            <figure class="image">
+                                <img src="/heap/social/{{ escape(event['img']) }}" >
+                            </figure>
+                        </div>
+                        {% if len(event['desc']) > 0 %}
+                        <div class="card-content">
+                            <!--<div class="media">
+                                <div class="media-content ">
+                                    <p class="title is-4 no-padding"></p>
+                                    <p class="subtitle is-6"></p>
+                                </div>
+                            </div>-->
+                            {% if len(event['desc']) > 256 %}
+                            <div class="content">{% raw event['desc'][:256] %} >>></div>
+                            {% else %}
+                            <div class="content">{% raw event['desc'] %}</div>
+                            {% end %}
+                        </div>
+                        {% end %}
+                        </a>
+                    </div>
+                </div>
+                {% end %}
+                {% end %}
+
+            </div>
+    </div>
+</section>
+

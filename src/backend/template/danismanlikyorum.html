@@ -22,6 +22,7 @@
     </div>
 </section>
 
+{% include notify.html %}
 
 {% if form1.last %}
 <section class="hero">
@@ -45,10 +46,22 @@
                 <p >
                     <span class="is-italic">{{comment.comment}}</span>
                     <span class="has-text-grey-light has-text-right is-size-7">&nbsp;{{escape(comment.time)}}</span>
-                    <span style="float:right; margin: 0;">
-                        <input  value="https://nuraykaya.com/danismanlik/yorum#{{url_escape(comment.nickname)}}" style="visibility: hidden; width: 0; height: 0;"></input>
-                        <i class="fa fa-share-alt" onclick="copyurl(event)"></i>
-                    </span>                
+                    <!-- <span style="float:right; margin: 0;">
+                        <input  value="https://nuraykaya.com/danismanlik/yorum#{{url_escape(comment.nickname)}}" style=" font-size: 0; width: 10px; height: 0;"></input>
+                        <i class="fa fa-share-alt" onclick="copyurl(event)"></i> 
+                    </span> 
+                    <script type="text/javascript">
+                        function copyurl(e) {
+                          var input = e.target.previousElementSibling;
+                          console.log(input)
+                          input.style.visibility = "";
+                          input.select();
+                          document.execCommand("copy");
+                          input.style.visibility = "hidden";
+                          e.target.className = "fa fa-copy"
+                        }
+                    </script> -->
+                    
                 </p>
             </div>
 
@@ -56,17 +69,6 @@
         {% end %}
         <a href="https://forms.gle/ttqqBhv7VuGcVtiS6" target="_blank"><button class="button is-success">Yorum Yapın</button></a>
     </div>
-    <script type="text/javascript">
-        function copyurl(e) {
-          var input = e.target.previousElementSibling;
-          console.log(input)
-          input.style.visibility = "";
-          input.select();
-          document.execCommand("copy");
-          input.style.visibility = "hidden";
-          e.target.className = "fa fa-copy"
-        }
-    </script>
 </section>
 {% end %}
 <!-- END CONTENT -->
