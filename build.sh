@@ -22,5 +22,6 @@ mkdir -p $tornado
 #Copy
 /bin/cp -Rv $server/* $nginx 
 /bin/cp -Rv $server/heap $tornado 
-/bin/cp -Rv $backend/* $tornado 
+/bin/cp -Rv $backend/* $tornado
+/bin/cp  $path/src/version $tornado
 /bin/chmod 775 -R $nginx

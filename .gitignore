@@ -1,6 +1,13 @@
 *sublime*
 src/server/heap/fontawesome
+src/server/heap/glob
+src/server/heap/greeting
+src/server/heap/icons
+src/server/heap/prof
+src/server/heap/social
+src/backend/*log*
 dist/nginx_root/*
 dist/tornado_root/*
 dist/mongo
 dist/nginx/ca
+dist/*.tar.gz
