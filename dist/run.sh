@@ -27,9 +27,9 @@ stop (){
 
 
 watch(){
-    gnome-terminal --tab -- watch -c $nginx_logs
+    gnome-terminal --window -- watch -c $nginx_logs
     #gnome-terminal --tab -- watch -c $mongo_logs
-    gnome-terminal --tab -- watch -c $network_logs
+    gnome-terminal --window -- watch -c $network_logs
 }
 
 
@@ -45,8 +45,8 @@ mongo () {
 
 #--add-host outside:172.17.0.1
 tornado (){
-    echo
-    gnome-terminal -- docker run -it --name $tornado_run --network $subnet -p 8000:8000 -v $tornado_chroot:/usr/src/app -w /usr/src/app $tornado_docker bash ./run.sh
+    echo "docker run -it --name $tornado_run --network $subnet -p 8000:8000 -v $tornado_chroot:/usr/src/app -w /usr/src/app $tornado_docker bash ./run.sh"
+    gnome-terminal --window -- docker run -it --name $tornado_run --network $subnet -p 8000:8000 -v $tornado_chroot:/usr/src/app -w /usr/src/app $tornado_docker bash ./run.sh
     echo "docker exec -it " $tornado_run " /bin/bash"
 }
 

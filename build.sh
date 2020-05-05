@@ -4,24 +4,26 @@
 
 
 
-path=$(dirname $(readlink -f $0))
-cd $path
-server=$path/src/server
-backend=$path/src/backend
-frontend=$path/src/frontend
-nginx=$path/dist/nginx_root
-tornado=$path/dist/tornado_root
+rpath=$(dirname $(readlink -f $0))
+cd $rpath
 
-mkdir -p $nginx
-mkdir -p $tornado
+path=$rpath/dist
+source $path/vars.sh
+
+server=$rpath/src/server
+backend=$rpath/src/backend
+frontend=$rpath/src/frontend
+
+mkdir -pv $nginx_chroot
+mkdir -pv $tornado_chroot
 
 #Clear
-/bin/rm -rf $nginx/* > /dev/null 2>&1
-/bin/rm -rf $tornado/heap > /dev/null 2>&1
+/bin/rm -rf $nginx_chroot/* 2>&1 >/dev/null
+/bin/rm -rf $tornado_chroot/heap 2>&1 >/dev/null
 
 #Copy
-/bin/cp -Rv $server/* $nginx 
-/bin/cp -Rv $server/heap $tornado 
-/bin/cp -Rv $backend/* $tornado
-/bin/cp  $path/src/version $tornado
-/bin/chmod 775 -R $nginx
+/bin/cp -Rv $server/* $nginx_chroot 2>&1 >/dev/null
+/bin/cp -R $server/heap $tornado_chroot 2>&1 >/dev/null
+/bin/cp -Rv $backend/* $tornado_chroot 2>&1 >/dev/null
+/bin/cp  $rpath/src/version $tornado_chroot 2>&1 >/dev/null
+/bin/chmod 775 -R $nginx_chroot 2>&1 >/dev/null
