@@ -5,15 +5,15 @@
             "id" : "prof_dns",
             "img": "",
             "summary" : "Tıp doktorları fiziksel beden üzerine, psikoloji uzmanları ise duygu ve düşünceler üzerine çalışırlar. Ancak yaşam ve varlığın farklı katmanları ve bağlantıları vardır, modern tıp uygulamaları ile birlikte diğer katmanlarda da çalışmak gerekir.",
-            "full" : "Prana (Yaşam Enerjisi) çalışmasında fiziksel temas, fiziksel hareket, ilaç, alet vs kullanılmadığı için bir <strong>tıp uygulaması değildir</strong>. Telkin yapılmadığı için bir tür <strong>psikoterapi de değildir.</strong> Sadece kişinin eterik alanında çalışma yapılır. Uygulama rahatsızlığın durumuna göre farklı sayıda seans ve sürede tamamlanır.",
+            "full" : "Prana (Yaşam Enerjisi) çalışmasında fiziksel temas, fiziksel hareket, ilaç, alet vs kullanılmadığı için bir <strong>tıp uygulaması değildir</strong>. Telkin yapılmadığı için bir tür <strong>psikoterapi de değildir.</strong> Sadece kişinin eterik alanında çalışma yapılır. Uygulama rahatsızlığın durumuna göre farklı sayıda seans ve sürede tamamlanır.<p>Pranik Şifa hakkında daha fazla bilgi almak için <a href='http://antalyapraniksifa.blogspot.com/p/pranik-sifa-nedir.html' target='_blank'>Pranik Şifa Nedir</a> yazısına bakın.",
             "fullid" : "danismanlik"
         },
         "prof2" : {
             "name":"Seminer",
             "id" : "prof_smn",
             "img": "",
-            "summary" : "Aura ve yaşam enerjisinin temellerini anlamak için Master Choa Kok Sui'nin 30 yıllık araştırma ve uygulamalarının sonuçlarını deneyimleyeceğiniz Dünya Pranik Şifa Vakfının 2 günlük seminerine katılabilirsiniz.",
-            "full" : "Enerji beden yani aura nasıl çalışıyor, nasıl hasta oluyor, nasıl iyileşiyor, çakraların özellikleri, karmanın etkisi, nefesi kullanma ve pek çok hastalığın aura üzerindeki etkilerini temizleme teknikleri Dünya Pranik Şifa Vakfının 2 günlük seminerinde sunuluyor. Önceden hiçbir temel bilgiye veya yeteneğe sahip olmanıza gerek yoktur, doğru tekniklerle herkes enerjiyi ve etkilerini deneyimleyebilir. <p>Daha fazla bilgi için Dünya Pranik Şifa Vakfı'nın <a href='https://www.thepranichealers.com/pages/tr/courses/basic-pranic-healing' target='_blank'>Temel Pranik Şifa Semineri hakkındaki</a> bilgilerine bakın.</p>",
+            "summary" : "Aura ve yaşam enerjisinin temellerini anlamak için Master Choa Kok Sui'nin 30 yıllık araştırma ve uygulamalarının sonuçlarını deneyimleyeceğiniz Dünya Pranik Şifa Vakfı'nın 2 günlük seminerine katılabilirsiniz.",
+            "full" : "Enerji beden yani aura nasıl çalışıyor, nasıl hasta oluyor, nasıl iyileşiyor, çakraların özellikleri, karmanın etkisi, nefesi kullanma ve pek çok hastalığın aura üzerindeki etkilerini temizleme teknikleri Dünya Pranik Şifa Vakfı'nın 2 günlük seminerinde sunuluyor. Önceden hiçbir temel bilgiye veya yeteneğe sahip olmanıza gerek yoktur, doğru tekniklerle herkes enerjiyi ve etkilerini deneyimleyebilir. <p>Dünya Pranik Şifa Vakfı'nın yetkili eğitmeni olarak Temel Pranik Şifa Seminerleri düzenliyorum, daha fazla bilgi için Dünya Pranik Şifa Vakfı'nın <a href='https://www.thepranichealers.com/pages/tr/courses/basic-pranic-healing' target='_blank'>Temel Pranik Şifa Semineri hakkındaki</a> bilgilerine bakabilirsiniz.",
             "fullid" : "seminer"
         },
         "prof3" : {
@@ -21,7 +21,7 @@
             "id" : "prof_kg",
             "img": "",
             "summary" : "Kalıcı değişimler içeriden dışarıya doğru gerçekleşir, değişmesi gereken şeyin kendiniz olduğunu kabul ettiğiniz anda her şey dönüşmeye başlar. Bu çalışma bir evi yıkıp yeniden inşa etmeye benzer ve önemli miktarda içsel enerji gerektirir. ",
-            "full" : "Master Choa Kok Sui'nin Arhatik Yoga teknikleri ile yaşanan fiziksel, düşünsel ve eterik dönüşüm bu enerjiyi dengeli bir şekilde sağlar. Bu çalışmanın merkezindeki giriş kapısı ise ilahi sevgi ve merhamet üzerine yapılan İkiz Kalpler Meditasyonu'dur. Her hafta dostlarla İkiz Kalpler Meditasyonu yapıyoruz, bize katılın. <p>Daha fazla bilgi için Dünya Pranik Şifa Vakfı'nın <a href='https://www.thepranichealers.com/pages/tr/our-system/twin-hearts' target='_blank'>İkiz Kalpler Meditasyonu hakkındaki</a> bilgilerine bakın.</p>",
+            "full" : "Fiziksel, düşünsel ve eterik dönüşüm için gerekli enerji Master Choa Kok Sui'nin Arhatik Yoga teknikleri ile dengeli bir şekilde sağlanır. Bu çalışmanın merkezindeki giriş kapısı ise ilahi sevgi ve merhamet üzerine yapılan İkiz Kalpler Meditasyonu'dur. Her hafta dostlarla İkiz Kalpler Meditasyonu yapıyoruz, bize katılın. <p>Daha fazla bilgi için Dünya Pranik Şifa Vakfı'nın <a href='https://www.thepranichealers.com/pages/tr/our-system/twin-hearts' target='_blank'>İkiz Kalpler Meditasyonu hakkındaki</a> bilgilerine bakın.",
             "fullid" : "kisiselgelisim"
         }
     }
