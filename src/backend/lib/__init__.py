@@ -6,3 +6,4 @@ from .parser import InstagramPage, FacebookPage, YoutubeVideos
 from .letglob import LetGlobal
 from .loader import HTTPLoader
 from .gparser import GForm
+from .bparser import BloggerAtom

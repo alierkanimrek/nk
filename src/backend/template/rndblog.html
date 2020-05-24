@@ -1,0 +1,23 @@
+<!-- BLOG CONTENT -->
+{% if len(blog.random["title"]) > 0 %}
+<section class="hero">    
+    <div class="container" style="width: 100%;">
+                <a class="column" href="/yazilar/{{ blog.random['id'] }}" style="padding: 0;">
+                <div class="columns is-mobile card">
+                    <div class="column is-narrow" style="padding: 0 .5rem;">
+                        <img src="{{ blog.random['img'] }}" style="max-height: 5rem;">
+                    </div>
+                    <div class="column card-content">
+                        <div class="media-content">
+                            <span class="title is-4 content-title">{{ blog.random["title"] }}</span>
+                        </div>
+                        <div class="content">
+                            {{ blog.random["sum"][:250] }}&nbsp;<i class="fas fa-angle-double-right"></i>
+                        </div>
+                    </div>
+                </div>
+                </a>
+    </div>
+</section>
+{% end %}
+<!-- END CONTENT -->

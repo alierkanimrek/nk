@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+{% autoescape None %}
+
+<section class="hero">
+    
+    <div class="container" style="width:100%;">
+    
+        <div class=columns>
+            <div class=" column">
+                <!-- START ARTICLE -->
+                <div class="card blog" style="margin:0;">
+                    <div class="card-content">
+                        <p class="title blog-title">{{ entry["title"] }}</p>
+                        <p class="subtitle is-6 blog-subtitle">{{ entry["time"].split("T")[0] }}</p>
+                        <div class="content blog-body">
+                            {{ entry["content"] }}
+                        </div>
+                    </div>
+                </div>
+                <!-- END ARTICLE -->  
+            </div>
+            <div class="column is-one-quarter">
+                <div class="card-content">
+                {% for entry1 in entries %}
+                    {% if entry1["id"] == entry["id"] %}
+                        <div class="box is-fullwidth" >{{ entry1["title"] }}</div>
+                    {% else %}
+                        <a class="box" style="background-color: transparent;" href="/yazilar/{{ entry1['id'] }}">
+                        <div >{{ entry1["title"] }}</div>
+                        </a>
+                    {% end %}
+                {% end %}
+                </div>
+            </div>
+        </div>
+    
+    </div>
+</section>
+<!-- END CONTENT -->
+
+
+{% end %}

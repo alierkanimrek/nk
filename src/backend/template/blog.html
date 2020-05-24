@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+{% autoescape None %}
+
+{% if len(entries) > 0 %}
+<section class="hero">
+    
+    <div class="container" style="width:100%;">
+
+        <div class="columns is-vcentered">
+            <div class="column ">
+                <figure class="avatar"> <img src="{{ entries[0]['img'] }}"></figure>
+            </div>
+            <div class="column">
+                <div class="hero-body">
+                    <div class="container has-text-centered">
+                    <h1 class="title">{{ glob.title(template).split("-")[1] }}</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% for entry in entries %}
+        <!-- START ARTICLE -->
+        <a name="{{ url_escape(entry['id']) }}"></a>
+        <br/><br/>
+        <a href="/yazilar/{{ entry['id'] }}">
+        <div class="columns is-mobile card blog">
+            <div class="column" style="max-width: 25%;">
+                <img src="{{ entry['img'] }}" >
+            </div>
+            <div class="column">
+                <div class="card-content">
+                    <p class="title blog-title">{{ entry["title"] }}</p>
+                    <p class="subtitle is-6 blog-subtitle">{{ entry["time"].split("T")[0] }}</p>
+                    <div class="content blog-body">
+                        {{ entry["sum"] }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        </a>
+        <!-- END ARTICLE -->
+        {% end %}
+    </div>
+</section>
+{% end %}
+<!-- END CONTENT -->
+
+
+{% end %}
