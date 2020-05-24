@@ -14,6 +14,9 @@ server=$rpath/src/server
 backend=$rpath/src/backend
 frontend=$rpath/src/frontend
 
+find . -type f -name "$backend/*.py[co]" -delete
+find . -type d -name "$backend/__pycache__" -delete
+
 mkdir -pv $nginx_chroot
 mkdir -pv $tornado_chroot
 
