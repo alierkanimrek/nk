@@ -97,7 +97,7 @@ class Form1(Parts):
     def choose(self):
         rnd = Form1Comment()
         if len(self.formdata.comments) > 1:
-            rnd = self.formdata.comments[random.randrange(len(self.formdata.comments))]
+            rnd = self.formdata.comments[random.randrange(0,len(self.formdata.comments))]
         elif len(self.formdata.comments) == 1:
             rnd = self.formdata.comments[0]
         self.random = rnd

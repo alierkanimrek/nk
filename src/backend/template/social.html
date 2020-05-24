@@ -22,6 +22,15 @@ ________________________________________________________________________________
                             <figure class="image">
                                 <img src="/heap/social/{{ escape(front['img']) }}" >
                             </figure>
+                            <div class="card-type">
+                                {% if 'instagram' in front['url'] %}
+                                    <i class="fab fa-instagram"></i>
+                                {% elif 'facebook' in front['url'] %}
+                                    <i class="fab fa-facebook"></i>
+                                {% elif 'youtube' in front['url'] %}
+                                    <i class="fab fa-youtube"></i>
+                                {%end%}
+                            </div>
                         </div>
                         {% if len(front['desc']) > 0 %}
                         <div class="card-content">

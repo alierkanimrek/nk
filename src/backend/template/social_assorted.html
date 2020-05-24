@@ -1,0 +1,57 @@
+<!--
+_______________________________________________________________________________________________
+
+
+
+
+                    SOCIAL ABOUT SEMINARS
+
+
+
+_______________________________________________________________________________________________
+-->
+{% if len(socAssorted) > 0 %}
+<section >
+    <div class="container">
+        {% for i in list(range(len(socAssorted))) %}
+            {% set item = socAssorted[i] %}
+            {% if i in [0,3,6] %} 
+            <div class="row columns">
+            {% end %}
+                <div class="column is-one-third">
+                    <div class="card large">
+                        <a class="cardlink" href="{{ item['url'] }}" target="_blank">
+                        <div class="card-image">
+                            <figure class="image">
+                                <img src="/heap/social/{{  item['img'] }}" >
+                            </figure>
+                            <div class="card-type">
+                                {% if 'instagram' in  item['url'] %}
+                                    <i class="fab fa-instagram"></i>
+                                {% elif 'facebook' in  item['url'] %}
+                                    <i class="fab fa-facebook"></i>
+                                {% elif 'youtube' in  item['url'] %}
+                                    <i class="fab fa-youtube"></i>
+                                {%end%}
+                            </div>
+                        </div>
+                        {% if len( item['desc']) > 0 %}
+                        <div class="card-content">
+                            {% if len(item['desc']) > 256 %}
+                            <div class="content">{% raw item['desc'][:256] %}&nbsp;<i class="fas fa-angle-double-right"></i></div>
+                            {% else %}
+                            <div class="content">{% raw item['desc'] %}</div>
+                            {% end %}
+                        </div>
+                        {% end %}
+                        </a>
+                    </div>
+                </div>
+            {% if i in [2,5,8] or len(socAssorted)-1 == i %}
+            </div>
+            {% end %}
+
+        {% end %}
+    </div>
+</section>
+{% end %}

@@ -21,7 +21,6 @@
         <div class="reading">
             <p>{% raw prof.data[id]["summary"] %}</p>
             <p>{% raw prof.data[id]["full"] %}</p>
-            <a href="https://forms.gle/ttqqBhv7VuGcVtiS6" target="_blank"><button class="button is-success">Yorum Yapın</button></a>
         </div>
     </div>
 </section>
@@ -32,6 +31,8 @@
 {% include notify.html %}
 
 {% include rndcomment_full.html %}
+{% include srcblog.html %}
+{% include social_assorted.html %}
 
 {% include profession.html %}
 

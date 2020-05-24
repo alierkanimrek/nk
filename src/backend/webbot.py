@@ -5,8 +5,8 @@
 
 import os
 import glob
-from lib import InstagramPage, FacebookPage, YoutubeVideos, GForm
-from parts import Social, Form1
+from lib import InstagramPage, FacebookPage, YoutubeVideos, GForm, BloggerAtom
+from parts import Social, Form1, Blogger
 from lib import LOG
 
 
@@ -16,7 +16,7 @@ InstagramPageURL = "https://instagram.com/pranik_arhat"
 FacebookPageURL = "https://facebook.com/antalyapraniksifa/posts"
 YoutubeVideosURL = "https://www.youtube.com/channel/UCqeqZ7VC4TXdDSaHB9gh2ow/videos"
 GForm1TSVURL = "https://docs.google.com/spreadsheets/d/1nEz_9Kqz0g86uSTxzggwS3--GjpiKb9V4xP0ISEZJZM/export?format=tsv&id=1nEz_9Kqz0g86uSTxzggwS3--GjpiKb9V4xP0ISEZJZM&gid=779288960"
-
+BloggerAtomURL = "https://antalyapraniksifa.blogspot.com/feeds/posts/default/"
 
 
 
@@ -96,19 +96,20 @@ class Agent(object):
 
 
 
-async def social_updater(heap, mode=["ins", "fbk", "ytb", "gf1"]):
+async def social_updater(heap, mode=["ins", "fbk", "ytb", "gf1", "blg"]):
     items = {}
     ytb_items = []
     agent = Agent(heap)
     social = Social("tr-tr")
     form1 = Form1("tr-tr")
+    blogger = Blogger("tr-tr")
     items = social.data
     
     #Get posts
     if "ins" in mode:
         parser = InstagramPage(InstagramPageURL)
         await parser.arender()
-        await agent.update(parser,  1)
+        await agent.update(parser)
         if agent.items: items["ins"] = agent.items
     if "fbk" in mode:
         parser = FacebookPage(FacebookPageURL)
@@ -118,13 +119,17 @@ async def social_updater(heap, mode=["ins", "fbk", "ytb", "gf1"]):
     if "ytb" in mode:
         parser = YoutubeVideos(YoutubeVideosURL)
         await parser.arender()
-        await agent.update(parser, 1)
+        await agent.update(parser)
         if agent.items: items["ytb"] = agent.items    
     if "gf1" in mode:
-        #parser = GForm(file=fn)
         parser = GForm(GForm1TSVURL)
         await parser.aload()
         if parser.items:   await form1.update(parser.titles, parser.items)
+    if "blg" in mode:
+        parser = BloggerAtom(BloggerAtomURL)
+        await parser.aload()
+        if parser.entries:   await blogger.update(parser.entries)
+
         
     social.update(items)
     
@@ -150,11 +155,11 @@ async def test():
 
     heap = "/home/ali/nk/src/server/heap/social"
 
-    await social_updater(heap)
+    await social_updater(heap, mode=["blg"])
     ioloop.IOLoop.instance().stop()
 
 
-#fn="docs.google.com#spreadsheets#d#1nEz_9Kqz0g86uSTxzggwS3--GjpiKb9V4xP0ISEZJZM#export?format=tsv&id=1nEz_9Kqz0g86uSTxzggwS3--GjpiKb9V4xP0ISEZJZM&gid=779288960"
+#fn="antalyapraniksifa.blogspot.com#feeds#posts#default#"
 #from tornado import ioloop
 #loop = loop = ioloop.IOLoop.instance()
 #loop.add_callback(test)
