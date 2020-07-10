@@ -91,19 +91,21 @@ async def socUpdate():
         ioloop.IOLoop.current().socLoader.start()
     else:
         try:
-            if hour > 8:
-                if minute in ["05", "25", "45", "55"]:
-                    await social_updater(conf.SERVER.heap_path+"/social", ["ins", "gf1"])
-                    stage1.d("Instagram and Form1 updated")
-                if minute == "00" and hour in [9, 12, 15, 18, 20, 21, 22, 23]:
-                    await social_updater(conf.SERVER.heap_path+"/social", ["fbk"])
-                    stage1.d("Facebook updated")
-                if minute == "00" and hour in [10, 17, 24]:
-                    await social_updater(conf.SERVER.heap_path+"/social", ["blg"])
-                    stage1.d("Blog updated")
-                if minute == "00" and hour in [8, 19]:
-                    await social_updater(conf.SERVER.heap_path+"/social", ["ytb"])
-                    stage1.d("Youtube updated")
+            if minute in ["05", "25", "45", "55"]:
+                await social_updater(conf.SERVER.heap_path+"/social", mode=["gf1"])
+                stage1.d("Form1 updated")
+            if minute == "00" and hour in [9, 12, 15, 18, 20, 21, 22, 23]:
+                await social_updater(
+                    conf.SERVER.heap_path+"/social", 
+                    conf.USER.instagram_access_token,
+                    ["fbk", "ins"])
+                stage1.d("Facebook and Instagram updated")
+            if minute == "00" and hour in [10, 17, 24]:
+                await social_updater(conf.SERVER.heap_path+"/social", mode=["blg"])
+                stage1.d("Blog updated")
+            if minute == "00" and hour in [8, 19]:
+                await social_updater(conf.SERVER.heap_path+"/social", mode=["ytb"])
+                stage1.d("Youtube updated")
         except Exception as inst:
             stage1.e_tb("Social updating failed", inst)
 

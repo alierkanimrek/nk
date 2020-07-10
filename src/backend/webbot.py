@@ -5,7 +5,7 @@
 
 import os
 import glob
-from lib import InstagramPage, FacebookPage, YoutubeVideos, GForm, BloggerAtom
+from lib import InstagramPage, FacebookPage, YoutubeVideos, GForm, BloggerAtom, InstagramAPIMedia
 from parts import Social, Form1, Blogger
 from lib import LOG
 
@@ -17,7 +17,7 @@ FacebookPageURL = "https://facebook.com/antalyapraniksifa/posts"
 YoutubeVideosURL = "https://www.youtube.com/channel/UCqeqZ7VC4TXdDSaHB9gh2ow/videos"
 GForm1TSVURL = "https://docs.google.com/spreadsheets/d/1nEz_9Kqz0g86uSTxzggwS3--GjpiKb9V4xP0ISEZJZM/export?format=tsv&id=1nEz_9Kqz0g86uSTxzggwS3--GjpiKb9V4xP0ISEZJZM&gid=779288960"
 BloggerAtomURL = "https://antalyapraniksifa.blogspot.com/feeds/posts/default/"
-
+InstagramAPIMediaURL = "https://graph.instagram.com/me/media?fields=id,caption,media_url,thumbnail_url,permalink,timestamp&access_token="
 
 
 
@@ -96,7 +96,7 @@ class Agent(object):
 
 
 
-async def social_updater(heap, mode=["ins", "fbk", "ytb", "gf1", "blg"]):
+async def social_updater(heap, instagram_access_token="", mode=["ins", "fbk", "ytb", "gf1", "blg"]):
     items = {}
     ytb_items = []
     agent = Agent(heap)
@@ -107,7 +107,7 @@ async def social_updater(heap, mode=["ins", "fbk", "ytb", "gf1", "blg"]):
     
     #Get posts
     if "ins" in mode:
-        parser = InstagramPage(InstagramPageURL)
+        parser = InstagramAPIMedia(InstagramAPIMediaURL+instagram_access_token)
         await parser.arender()
         await agent.update(parser)
         if agent.items: items["ins"] = agent.items
@@ -155,11 +155,12 @@ async def test():
 
     heap = "/home/ali/nk/src/server/heap/social"
 
-    await social_updater(heap, mode=["blg"])
+    await social_updater(heap, instagram_access_token, mode=["ins"])
     ioloop.IOLoop.instance().stop()
 
 
 #fn="antalyapraniksifa.blogspot.com#feeds#posts#default#"
+#instagram_access_token="IGQVJYMURJLWN0eUhoOXhxTXpkazloT3JMOHhBSkZAoWVJibEtyV1J2RUlSdjd4VWV1ZATZAHVFROUW9tRURJNGx6QWpmOE15SWN1U0ZA3NDBPSkdDaG5LS0h1ZA0tBUUtsRVNTVHpHaVR4STFjOS1PYWIxLQZDZD"
 #from tornado import ioloop
 #loop = loop = ioloop.IOLoop.instance()
 #loop.add_callback(test)

@@ -15,13 +15,13 @@ sudo docker build -t $nginx_docker .
 #cd $mongo
 #sudo docker build -t $mongo_docker .
 
-cd $tornado
+#cd $tornado
 #sudo docker build -t $tornado_docker .
 
 cd ..
-#docker network create $subnet
+#sudo docker network create $subnet
 echo .
-#docker network inspect $subnet|grep Subnet
+docker network inspect $subnet|grep Subnet
 
 echo You should check and fix ip adresses of tornado and mongo servers 
 echo at nginx.conf and server.py file according to your docker sub-network

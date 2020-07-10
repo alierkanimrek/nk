@@ -106,3 +106,12 @@ SERVER["cookie_key"] = {
 	"values" : [],
 	"default" : ""
 	}
+
+
+USER = {}
+
+USER["instagram_access_token"] = {
+	"type" : "str", 
+	"values": [],	
+	"default" : ""
+	}

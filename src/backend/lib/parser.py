@@ -94,7 +94,7 @@ class HTMLClient:
 
 
 
-    async def aload(self, mobile=True, render=False):
+    async def aload(self, mobile=True, render=False, parse=True):
         try:
             if self.url:
                 if render:
@@ -113,7 +113,7 @@ class HTMLClient:
                         self.raw = r.html.html
                     else:
                         self.raw = r.text
-                    self._parse()
+                    self._parse(parse)
             elif self.file:
                 self.load_file()
             if self.save:
@@ -164,7 +164,7 @@ class HTMLClient:
 
     def _save(self, fn:str, raw:str):
         try:
-            fh = open(fn, "w", encoding="UTF-8")
+            fh = open(fn[:48], "w", encoding="UTF-8")
             fh.write(raw)
             fh.close()
         except Exception as inst:
@@ -173,15 +173,20 @@ class HTMLClient:
 
 
 
-    def _parse(self):
-        try:
-            self.elements = fromstring(self.raw)
-            #self.elements = BeautifulSoup(self.raw,"lxml")
-            if(self.elements):   self.status = True
+    def _parse(self, parse):
+        if parse:
+            try:
+                self.elements = fromstring(self.raw)
+                #self.elements = BeautifulSoup(self.raw,"lxml")
+                if(self.elements):   self.status = True
+                return(True)
+            except Exception as inst:
+                self._log.e_tb("Parsing error", inst)
+                return(False)
+        else:
+            self.status = True
             return(True)
-        except Exception as inst:
-            self._log.e_tb("Parsing error", inst)
-            return(False)
+
 
 
 
@@ -387,3 +392,47 @@ class YoutubeVideos(HTMLClient):
 
 
             
+
+
+
+
+
+class InstagramAPIMedia(HTMLClient):
+
+
+
+
+    def __init__(self, url:str="", file:str="", save:bool=False):
+        super(InstagramAPIMedia, self).__init__(url=url, file=file, save=save)
+        self.items = []
+        self._log = LOG._.job("InstaAPIMedia")
+
+
+
+
+    async def arender(self):
+        await self.aload(parse=False)
+        if(self.status):    self.parse()
+
+
+
+
+    def render(self):
+        self.load()
+        if(self.status):    self.parse()
+
+
+
+
+    def parse(self):
+        try:
+            data = json.loads(self.raw)
+            social = SocialItem()
+            for entry in data["data"]:
+                social = SocialItem()
+                social.url = entry["permalink"]
+                social.img = entry["media_url"]
+                social.desc = entry["caption"]
+                self.items.append(vars(social))
+        except Exception as inst:
+            self._log.e_tb("Parsing error", inst)
