@@ -165,9 +165,42 @@ ________________________________________________________________________________
         <div class="columns is-vcentered">
             <div class="column">
                 <p class="is-size-3" style="text-align: left">{{ escape(glob.data["contact"]["adressTitle"]) }}</p>
-                <p class="is-size-4" style="text-align: left">{{ escape(glob.data["contact"]["adress"]) }}</p>
-                <br/>
-                <iframe src="{{ escape(glob.data["contact"]["mapframe"]) }}" width="90%" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+                
+                <div class="columns is-vcentered is-mobile">
+                    <div class="column is-narrow">
+                      <a href="tel:+905519451373">
+                        <i class="fas fa-phone-square-alt" style="font-size: 4rem;"></i>
+                      </a>
+                    </div>
+                    <div class="column" >
+                        <div >
+                            <div class="container">
+                              <span class="is-size-4">
+                                <a href="tel:{{ glob.data['contact']['phoneNumber'] }}">{{ glob.data['contact']['phoneNumber'] }}</a> 
+                                - {{ glob.data['contact']['phoneTitle'] }}
+                              </span>
+                              <br/>
+                              <span class="is-size-5">{{ glob.data['contact']['phoneSub'] }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="columns is-vcentered is-mobile">
+                    <div class="column is-narrow">
+                        <i class="fas fa-map-marker-alt" style="font-size: 4rem;"></i>
+                    </div>
+                    <div class="column" >
+                        <div >
+                            <div class="container">
+                              <span class="is-size-4">
+                                {{ escape(glob.data["contact"]["adress"]) }}
+                              </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <iframe src='{{ escape(glob.data["contact"]["mapframe"]) }}' width="90%" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
             </div>
 
             <div class="column">
