@@ -11,8 +11,6 @@ assetsurl=https://github.com/$uname/$name/releases/download/$version/assets_$ver
 echo -e "\nApp         : $name \nGithub User : $uname \nApp Version : $version"
 
 if [ "$1" == "install" ];then
-    /bin/cp -v appservice.service /lib/systemd/system/appservice.service
-    systemctl daemon-reload
     target=/var/${name}
 elif [ "$1" == "" ];then
     target=/var/${name}
@@ -86,7 +84,8 @@ echo -e "\nRestoring conf etc."
 /bin/cp -v $backup/nginx/heap/social/* $nginx/heap/social 2>&1 >/dev/null
 
 #Edit for restoring dynamic files
-/bin/cp -v $backup/app/parts/*.json $app/parts
+/bin/cp -v $backup/app/parts/form1.json $app/parts
+/bin/cp -v $backup/app/parts/blogger.json $app/parts
 
 #Chmod
 echo -e "\nChmod Dirs"
@@ -98,5 +97,9 @@ chmod -R 775 $app
 
 #Restart Services
 echo -e "\nStarting Services"
+if [ "$1" == "install" ];then
+    /bin/cp -v appservice.service /lib/systemd/system/appservice.service
+    systemctl daemon-reload
+fi
 systemctl start appservice.service
 systemctl start nginx.service
