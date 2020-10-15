@@ -28,6 +28,8 @@ echo -e "\nPreparing dirs"
 mkdir -pv $app
 mkdir -pv $backup/app
 mkdir -pv $nginx
+mkdir -pv $nginx_chroot/heap/social
+mkdir -pv $tornado_chroot/parts
 mkdir -pv $backup/nginx
 
 #Download assets
@@ -58,7 +60,7 @@ echo -e "\nReady to updating"
 echo -e "\nServices stopping"
 systemctl stop nginx.service
 systemctl stop appservice.service
-sleep 5
+#sleep 5
 
 #Backup App 
 echo -e "\nBacking up current App"
@@ -86,6 +88,7 @@ echo -e "\nRestoring conf etc."
 #Edit for restoring dynamic files
 /bin/cp -v $backup/app/parts/form1.json $app/parts
 /bin/cp -v $backup/app/parts/blogger.json $app/parts
+/bin/cp -v $backup/app/parts/social.json $app/parts
 
 #Chmod
 echo -e "\nChmod Dirs"
