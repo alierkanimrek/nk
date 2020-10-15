@@ -9,10 +9,10 @@
     
     <div class="container" style="width:100%;">
     
-        <div class=columns>
-            <div class=" column">
+
+            
                 <!-- START ARTICLE -->
-                <div class="card blog" style="margin:0;">
+                <div class="blog" style="margin:0;">
                     <div class="card-content">
                         <p class="title blog-title">{{ entry["title"] }}</p>
                         <p class="subtitle is-6 blog-subtitle">{{ entry["time"].split("T")[0] }}</p>
@@ -22,8 +22,9 @@
                     </div>
                 </div>
                 <!-- END ARTICLE -->  
-            </div>
-            <div class="column is-one-quarter">
+            
+        <div class=columns>            
+            <div class="column">
                 <div class="card-content">
                 {% for entry1 in entries %}
                     {% if entry1["id"] == entry["id"] %}

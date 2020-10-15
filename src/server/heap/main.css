@@ -112,4 +112,5 @@ img,div{
   margin: 0 1rem;
   font-size: 1.3rem;
   letter-spacing: .03em;
+  overflow-wrap: break-word;
 }

@@ -94,18 +94,18 @@ async def socUpdate():
             if minute in ["05", "25", "45", "55"]:
                 await social_updater(conf.SERVER.heap_path+"/social", mode=["gf1"])
                 stage1.d("Form1 updated")
-            if minute == "00" and hour in [9, 12, 15, 18, 20, 21, 22, 23]:
+            '''if minute == "00" and hour in [9, 12, 15, 18, 20, 21, 22, 23]:
                 await social_updater(
                     conf.SERVER.heap_path+"/social", 
                     conf.USER.instagram_access_token,
                     ["fbk", "ins"])
-                stage1.d("Facebook and Instagram updated")
+                stage1.d("Facebook and Instagram updated")'''
             if minute == "00" and hour in [10, 17, 24]:
                 await social_updater(conf.SERVER.heap_path+"/social", mode=["blg"])
                 stage1.d("Blog updated")
-            if minute == "00" and hour in [8, 19]:
+            '''if minute == "00" and hour in [8, 19]:
                 await social_updater(conf.SERVER.heap_path+"/social", mode=["ytb"])
-                stage1.d("Youtube updated")
+                stage1.d("Youtube updated")'''
         except Exception as inst:
             stage1.e_tb("Social updating failed", inst)
 
